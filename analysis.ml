@@ -181,13 +181,23 @@ let create_debloating_project name result =
   let vis prj = new debloat_visitor prj result in
   File.create_project_from_visitor name vis
 
+module Debloating_done =
+  State_builder.False_ref(
+    struct
+      let name = "Analysis.Debloating_done"
+      let dependencies = [ Ast.self; Options.Project_name.self ]
+    end)
+
 let debloat () =
-  let result = compute () in
-  let prj =
-    create_debloating_project (Options.Project_name.get()) result
-  in
-  Project.on prj
-    (fun () -> Rmtmps.removeUnused ~isRoot:(fun _ -> false) (Ast.get ())) ()
+  if not (Debloating_done.get()) then begin
+    Debloating_done.set true;
+    let result = compute () in
+    let prj =
+      create_debloating_project (Options.Project_name.get()) result
+    in
+    Project.on prj
+      (fun () -> Rmtmps.removeUnused ~isRoot:(fun _ -> false) (Ast.get ())) ();
+  end
 
 let function_called kf =
   let result = compute () in

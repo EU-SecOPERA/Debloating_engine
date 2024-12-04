@@ -10,14 +10,14 @@ include Plugin.Register(
 module Enabled =
     False(
       struct
-        let option_name = "-debloat"
+        let option_name = "-debloating"
         let help = "removes code unreachable from main entry point"
   end)
 
 module Project_name =
   String(
     struct
-      let option_name = "-debloat-project"
+      let option_name = "-debloating-project"
       let arg_name = "s"
       let default = "Debloated"
 
