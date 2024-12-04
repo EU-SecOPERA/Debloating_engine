@@ -16,10 +16,11 @@ let eval_const c = CConst c
 
 let int_constant k i = CConst(CInt64(i,k,None))
 
+let eval_sizeof_int t = Z.of_int (Cil.bytesSizeOf t)
+
 let eval_sizeof t =
   try
-    let size = Cil.bytesSizeOf t in
-   int_constant (Machine.sizeof_kind()) (Z.of_int size)
+    int_constant (Machine.sizeof_kind()) (eval_sizeof_int t)
   with Cil.SizeOfError _ -> CNotConstant
 
 let eval_alignof t =
@@ -32,6 +33,9 @@ let int_result k i =
   let res, truncated = Cil.truncateInteger64 k i in
   if truncated && Cil.isSigned k then CNotConstant
   else int_constant k res
+
+let true_result = int_result IBool Z.one
+let false_result = int_result IBool Z.zero
 
 let eval_int_unop op v t =
   match Cil.unrollType t, op with
@@ -61,10 +65,142 @@ let eval_unop op v t =
     eval_int_unop op v t
   | _ -> CNotConstant
 
-let eval_binop _op v1 v2 _t =
-  match v1,v2 with
+let is_cmp = function Lt | Gt | Le | Ge | Eq | Ne -> true | _ -> false
+
+let eval_eq_operands = function
+  | Eq | Le | Ge -> true_result
+  | Gt | Lt | Ne -> false_result
+  | _ -> Options.fatal "operator is not a comparison"
+
+let eval_lt_operands = function
+  | Lt | Le | Ne -> true_result
+  | Eq | Ge | Gt -> false_result
+  | _ -> Options.fatal "operator is not a comparison"
+
+let eval_gt_operands = function
+  | Gt | Ge | Eq -> true_result
+  | Ne | Le | Lt -> false_result
+  | _ -> Options.fatal "operator is not a comparison"
+
+let rec compare_offset op o1 o2 =
+  match o1, o2 with
+  | CNoOffset, CNoOffset -> eval_eq_operands op
+  | CNoOffset, CIndex (i, o2) when Z.equal i Z.zero -> compare_offset op o1 o2
+  | CIndex (i, o1), CNoOffset when Z.equal i Z.zero -> compare_offset op o1 o2
+  | CNoOffset, CField(fi, o2) when fst (Cil.fieldBitsOffset fi) = 0 ->
+    compare_offset op o1 o2
+  | CField(fi,o1), CNoOffset when fst (Cil.fieldBitsOffset fi) = 0 ->
+    compare_offset op o1 o2
+  | CNoOffset, _ -> eval_lt_operands op
+  | _, CNoOffset -> eval_gt_operands op
+  | CIndex(i1, o1), CIndex(i2, o2) ->
+    (match Z.compare i1 i2 with
+     | 0 -> compare_offset op o1 o2
+     | n when n < 0 -> eval_lt_operands op
+     | _ -> eval_gt_operands op)
+  | CIndex _, _ | _, CIndex _ -> CNotConstant
+  | CField(fi1,o1), CField(fi2,o2) ->
+    let open Cil_datatype in
+    if (Fieldinfo.equal fi1 fi2 ||
+        (Compinfo.equal fi1.fcomp fi2.fcomp && not fi1.fcomp.cstruct))
+    then compare_offset op o1 o2
+    else if fi1.forder < fi2.forder then eval_lt_operands op
+    else eval_gt_operands op
+
+let compare_lval op (b1,o1) (b2,o2) =
+  if Base_addr.equal b1 b2 then begin
+    compare_offset op o1 o2
+  end else begin
+    if op = Eq then false_result
+    else if op = Ne then true_result
+    else CNotConstant
+  end
+
+let compare_c_const op c1 c2 =
+  let loc = Cil_datatype.Location.unknown in
+  let open Cil_builder.Exp in
+  let c1 = of_constant c1 in
+  let c2 = of_constant c2 in
+  let cmp = binop op c1 c2 in
+  match Cil.constFoldToInt (cil_exp ~loc cmp) with
+  | None -> CNotConstant
+  | Some z when Z.equal z Z.zero -> eval_eq_operands op
+  | Some z when Z.lt z Z.zero -> eval_lt_operands op
+  | Some _ -> eval_gt_operands op
+
+let compare_val op v1 v2 =
+  match v1, v2 with
   | CNotConstant, _ | _, CNotConstant -> CNotConstant
-  | _ -> CNotConstant
+  | CPtr lv1, CPtr lv2 -> compare_lval op lv1 lv2
+  | CPtr _, _ | _, CPtr _ -> CNotConstant
+  | CConst c1, CConst c2 -> compare_c_const op c1 c2
+
+let add_index (b,o) z =
+  let rec aux =
+    function
+    | CNoOffset -> CIndex(z,CNoOffset)
+    | CIndex (z1,CNoOffset) -> CIndex(Z.add z1 z, CNoOffset)
+    | CIndex (z, o) -> CIndex(z, aux o)
+    | CField(f,o) -> CField(f, aux o)
+  in
+  CPtr (b, aux o)
+
+let compute_offset_opt t o =
+  let rec aux t o res =
+    match o with
+    | CNoOffset -> Some res
+    | CIndex (i,o) when Cil.isArrayType t ->
+      (try
+         let elm = Cil.typeOf_array_elem t in
+         let sz = eval_sizeof_int elm in
+         aux elm o (Z.(res + sz * i))
+       with
+       | Cil.SizeOfError _ -> None)
+    | CIndex _ -> None
+    | CField (f,o) ->
+      let open Option.Operators in
+      let* fo = f.foffset_in_bits in
+      let fo = fo / 8 in
+      aux f.ftype o Z.(add res (of_int fo))
+  in aux t o Z.zero
+
+let diff_offset (b1,o1) (b2,o2) =
+  if Base_addr.equal b1 b2 then begin
+    let base_type =
+      match b1 with
+      | Var v -> v.vtype
+      | Dynamic _ -> Cil_builder.Type.(cil_typ (array char))
+    in
+    let open Option.Operators in
+    (let+ o1 = compute_offset_opt base_type o1
+     and* o2 = compute_offset_opt base_type o2 in
+     int_result (Machine.ptrdiff_kind()) (Z.sub o1 o2)) |>
+    Option.value ~default:CNotConstant
+  end else CNotConstant
+
+let eval_binop op v1 v2 =
+  match v1,v2 with
+  | _ when is_cmp op -> compare_val op v1 v2
+  | CNotConstant, _ | _, CNotConstant -> CNotConstant
+  | CPtr lv1, CConst (CInt64 (z,_,_)) ->
+    (match op with
+     | PlusPI -> add_index lv1 z
+     | MinusPI -> add_index lv1 (Z.neg z)
+     | _ -> Options.fatal
+              "Unexpected pointer operand for %a" Printer.pp_binop op)
+  | CPtr lv1, CPtr lv2 when op = MinusPP -> diff_offset lv1 lv2
+  | CPtr _, _ | _, CPtr _ ->
+    Options.fatal "Unexpected pointer operand for %a" Printer.pp_binop op
+  | CConst c1, CConst c2 ->
+    let loc = Cil_datatype.Location.unknown in
+    let open Cil_builder.Exp in
+    let c1 = of_constant c1 in
+    let c2 = of_constant c2 in
+    let op = binop op c1 c2 in
+    match (Cil.constFold true (cil_exp ~loc op)).enode with
+    | Const c -> CConst c
+    | _ -> CNotConstant
+
 
 let eval_cast _t v =
   match v with
@@ -82,7 +218,7 @@ let rec eval_exp env e =
   | AlignOf t -> eval_alignof t
   | AlignOfE e -> eval_alignof (Cil.typeOf e)
   | UnOp (uop,e,t) -> eval_unop uop (eval_exp env e) t
-  | BinOp (bop,e1,e2,t) -> eval_binop bop (eval_exp env e1) (eval_exp env e2) t
+  | BinOp (bop,e1,e2,_) -> eval_binop bop (eval_exp env e1) (eval_exp env e2)
   | CastE (t,e) -> eval_cast t (eval_exp env e)
   | AddrOf lv  -> eval_addrof env lv
   | StartOf lv -> eval_addrof env lv
