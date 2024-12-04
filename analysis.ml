@@ -5,7 +5,7 @@ let singleton_join s1 s2 =
   if Singleton_val.equal s1 s2 then s1 else CNotConstant
 
 let map_join m1 m2 =
-  Base_addr.Map.merge
+  CLval.Map.merge
     (fun _ o1 o2 ->
        match o1, o2 with
        | None, _ | _, None -> Some CNotConstant
@@ -145,6 +145,12 @@ let add_index (b,o) z =
   in
   CPtr (b, aux o)
 
+let rec add_coffset o1 o2 =
+  match o1 with
+  | CNoOffset -> o2
+  | CField(f,o1) -> CField(f, add_coffset o1 o2)
+  | CIndex(i,o1) -> CIndex(i, add_coffset o1 o2)
+
 let compute_offset_opt t o =
   let rec aux t o res =
     match o with
@@ -236,23 +242,55 @@ let rec eval_exp env e =
   | CastE (t,e) -> eval_cast t (eval_exp env e)
   | AddrOf lv  -> eval_addrof env lv
   | StartOf lv -> eval_addrof env lv
-and eval_addrof _env (_host,_offset) = CNotConstant
-and eval_lval _env (_host,_offset) = CNotConstant
+and eval_addrof env (host,offset) =
+  let open Option.Operators in
+  (let* b,o =
+    match host with
+    | Cil_types.Var v -> Some (Var v, CNoOffset)
+    | Mem e ->
+      (match eval_exp env e with
+       | CPtr clv -> Some clv
+       | _ -> None)
+  in
+  let+ o = add_offset env o offset in
+  CPtr (b,o)) |> Option.value ~default:CNotConstant
+
+and add_offset env o =
+  function
+  | NoOffset -> Some o
+  | Field(f,co) ->
+    let o = add_coffset o (CField (f,CNoOffset)) in
+    add_offset env o co
+  | Index(i, co) ->
+    (match eval_exp env i with
+     | CConst (CInt64(z, _, _)) ->
+       let o = add_coffset o (CIndex (z, CNoOffset)) in
+       add_offset env o co
+     | _ -> None)
+
+and eval_lval env lv =
+  match eval_addrof env lv with
+  | CNotConstant -> CNotConstant
+  | CPtr lv ->
+    (match CLval.Map.find_opt lv env with
+     | Some v -> v
+     | None -> CNotConstant)
+  | _ -> CNotConstant
 
 let add_glob_var v i s =
   let init =
     match i.init with
     | None -> CNotConstant
-    | Some (SingleInit e) -> eval_exp Base_addr.Map.empty e
+    | Some (SingleInit e) -> eval_exp CLval.Map.empty e
     | Some (CompoundInit (_,_l)) ->
       Options.not_yet_implemented
         ~source:(fst v.vdecl) "Compound Initialization"
   in
-  Base_addr.Map.add (Var v) init s
+  CLval.Map.add (Var v, CNoOffset) init s
 
 (* counter is shared across branches, not merely mutable. *)
 type state =
-  { state: Singleton_val.t Base_addr.Map.t; malloc_cnt: int ref }
+  { state: Singleton_val.t CLval.Map.t; malloc_cnt: int ref }
 
 let update_state f s = let state = f s.state in { s with state }
 
@@ -267,7 +305,7 @@ module rec Single_values: Interpreted_automata.Domain with type t = state =
 
     let widen s1 s2 =
       let res = join s1 s2 in
-      if Base_addr.Map.equal Singleton_val.equal s1.state res.state then
+      if CLval.Map.equal Singleton_val.equal s1.state res.state then
         Interpreted_automata.Fixpoint
       else Interpreted_automata.Widening res
 
@@ -282,9 +320,9 @@ let init is_lib =
   let state =
     if is_lib then
       Globals.Vars.fold
-        (fun v _ acc -> Base_addr.Map.add (Var v) CNotConstant acc)
-        Base_addr.Map.empty
-    else Globals.Vars.fold add_glob_var Base_addr.Map.empty
+        (fun v _ acc -> CLval.Map.add (Var v, CNoOffset) CNotConstant acc)
+        CLval.Map.empty
+    else Globals.Vars.fold add_glob_var CLval.Map.empty
   in
   let malloc_cnt = ref 0 in
   { state; malloc_cnt }
@@ -295,7 +333,7 @@ let compute () =
   let init_state = init is_lib in
   let add_formals s =
     List.fold_left
-      (fun acc v -> Base_addr.Map.add (Var v) CNotConstant acc)
+      (fun acc v -> CLval.Map.add (Var v,CNoOffset) CNotConstant acc)
       s (Kernel_function.get_formals main)
   in
   let init_state = update_state add_formals init_state in
