@@ -202,9 +202,23 @@ let eval_binop op v1 v2 =
     | _ -> CNotConstant
 
 
-let eval_cast _t v =
+let eval_cast t v =
   match v with
   | CNotConstant -> CNotConstant
+  | CPtr _ when Cil.isPointerType t -> v
+  | CPtr _ -> CNotConstant
+  | CConst (CInt64(z, _, _)) ->
+    (match Cil.unrollType t with
+     | TInt (k, _) -> int_result k z
+     | TEnum (e, _) -> int_result e.ekind z
+     | _ -> CNotConstant)
+  | CConst (CReal(v,_,_)) ->
+    (match Cil.unrollType t with
+     | TFloat(k,_) when Cil.isFiniteFloat k v -> CConst (CReal(v,k,None))
+     | TFloat _ -> CNotConstant
+     | TInt (k,_) -> int_result k (Z.of_float v)
+     | TEnum (e,_) -> int_result e.ekind (Z.of_float v)
+     | _ -> CNotConstant)
   | _ -> CNotConstant
 
 let rec eval_exp env e =
