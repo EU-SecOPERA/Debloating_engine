@@ -12,6 +12,8 @@ let map_join m1 m2 =
        | Some s1, Some s2 -> Some (singleton_join s1 s2))
     m1 m2
 
+let havoc_state s = CLval.Map.map (fun _ -> CNotConstant) s
+
 let eval_const c = CConst c
 
 let int_constant k i = CConst(CInt64(i,k,None))
@@ -277,6 +279,21 @@ and eval_lval env lv =
      | None -> CNotConstant)
   | _ -> CNotConstant
 
+let rec init_lval b o init s =
+  match init with
+  | SingleInit e ->
+    CLval.Map.add (b,o) (eval_exp s e) s
+  | CompoundInit(_,l) ->
+    let eval_one s (o',i) =
+      match add_offset s o o' with
+      | None -> CLval.Map.add (b,o) CNotConstant s
+      | Some o' -> init_lval b o' i s
+    in
+    List.fold_left eval_one s l
+
+(* TODO: reduce if e is of the form x == c *)
+let reduce_state_true _e s = s
+
 let add_glob_var v i s =
   let init =
     match i.init with
@@ -288,11 +305,82 @@ let add_glob_var v i s =
   in
   CLval.Map.add (Var v, CNoOffset) init s
 
+let add_formals kf args s =
+  let formals = Kernel_function.get_formals kf in
+  let rec aux lf la s =
+    match lf,la with
+    | [], _ -> s
+    | _:: _, [] ->
+      Options.fatal "Too few arguments in call to %a" Kernel_function.pretty kf
+    | x :: lx, a :: la ->
+      aux lx la (CLval.Map.add (Var x, CNoOffset) a s)
+  in
+  aux formals args s
+
+let add_local_bindings b s =
+  List.fold_left (fun s vi -> CLval.Map.add (Var vi, CNoOffset) CNotConstant s)
+    s b.blocals
+
+let clear_local_bindings b s =
+  let is_based_on_var vi =
+    function
+    | Var vi' -> Cil_datatype.Varinfo.equal vi vi'
+    | _ -> false
+  in
+  List.fold_left
+    (fun s vi -> CLval.Map.filter (fun (h,_) _ -> is_based_on_var vi h) s)
+    s b.blocals
+
+let update_offset h o v s =
+  match o with
+  | None ->
+    (* write at an unspecified offset in the structure: just
+       invalidate the whole block for now.
+       TODO: refine computation by checking which offset is imprecise.
+    *)
+    CLval.Map.add (h,CNoOffset) CNotConstant s
+  | Some o -> CLval.Map.add (h,o) v s
+
+let update_offset_shallow b o v s =
+  match o with
+  | None ->  update_offset b None v s
+  | Some o' ->
+    let v' = CLval.Map.find_opt (b,o') s in
+    let v' = Option.value v' ~default:CNotConstant in
+    update_offset b (Some o') v' s
+
+let shallow_update (b,o) v s1 s2 =
+  match b with
+  | Cil_types.Var vi ->
+    update_offset_shallow (Var vi) (add_offset s1 CNoOffset o) v s2
+  | Mem e ->
+    (match eval_exp s1 e with
+     | CPtr (b,o') -> update_offset_shallow b (add_offset s1 o' o) v s2
+     | _ -> havoc_state s2)
+
+let strong_update = update_offset
+
+let assign_lval stmt (h,o as lv) v s1 s2 =
+  match h with
+  | Cil_types.Var vi -> strong_update (Var vi) (add_offset s1 CNoOffset o) v s2
+  | Mem e ->
+    (match eval_exp s1 e with
+    | CPtr (h',o') -> strong_update h' (add_offset s1 o' o) v s2
+    | _ ->
+      let aliases = Alias.API.Statement.alias_lvals ~stmt lv in
+      let update_one alias s = (shallow_update alias v s1) s in
+      Cil_datatype.LvalStructEq.Set.fold update_one aliases s2)
+
 (* counter is shared across branches, not merely mutable. *)
 type state =
-  { state: Singleton_val.t CLval.Map.t; malloc_cnt: int ref }
+  { state: Singleton_val.t CLval.Map.t;
+    malloc_cnt: int ref;
+    return_value: Singleton_val.t option
+  }
 
 let update_state f s = let state = f s.state in { s with state }
+
+let clear_return s = { s with return_value = None }
 
 module rec Single_values: Interpreted_automata.Domain with type t = state =
   struct
@@ -309,7 +397,77 @@ module rec Single_values: Interpreted_automata.Domain with type t = state =
         Interpreted_automata.Fixpoint
       else Interpreted_automata.Widening res
 
-    let transfer _ _ _s = None
+    let mk_call stmt pre lv kf args =
+      let with_formals = update_state (add_formals kf args) pre in
+      let res = DataFlow.fixpoint kf with_formals in
+      DataFlow.Result.at_return res |>
+      Option.map
+        (fun s ->
+           (match lv with
+            | None -> clear_return s
+            | Some lv ->
+              let v = Option.value s.return_value ~default:CNotConstant in
+              update_state (assign_lval stmt lv v pre.state) s |> clear_return))
+
+    let multiple_calls stmt pre lv args f res =
+      let kf = Globals.Functions.get f in
+      let new_res = mk_call stmt pre lv kf args in
+      match res, new_res with
+      | None, r | r, None -> r
+      | Some s1, Some s2 ->
+        Some (update_state (fun s -> map_join s s2.state) s1)
+
+    let transfer_instr i stmt s =
+      match i with
+      | Skip _ -> Some s
+      | Set (lv, e, _) ->
+        let v = eval_exp s.state e in
+        Some (update_state (assign_lval stmt lv v s.state) s)
+      | Call(lv,f,args,_) ->
+        let args = List.map (eval_exp s.state) args in
+        (match f.enode with
+         | Lval(Var f, NoOffset) ->
+           let kf = Globals.Functions.get f in
+           mk_call stmt s lv kf args
+         | Lval lvf ->
+           let sf = Alias.API.Statement.alias_vars ~stmt lvf in
+           Cil_datatype.Varinfo.Set.fold
+             (multiple_calls stmt s lv args) sf None
+         | _ ->
+           Options.fatal "Unexpected expression as called function: %a"
+             Printer.pp_exp f)
+      | Local_init (vi, AssignInit init, _) ->
+        Some (update_state (init_lval (Var vi) CNoOffset init) s)
+      | Local_init (vi, ConsInit(f, args, kind),loc) ->
+        let kf = Globals.Functions.get f in
+        let lv = Cil_types.Var vi, NoOffset in
+        let ret_lv, args =
+          match kind with
+          | Plain_func -> Some lv, args
+          | Constructor -> None, Cil.mkAddrOf ~loc lv :: args
+        in
+        let args = List.map (eval_exp s.state) args in
+        mk_call stmt s ret_lv kf args
+      | Asm _ -> Some (update_state havoc_state s)
+      | Code_annot _ -> Some s
+
+    let transfer _v t s =
+      let open Interpreted_automata in
+      match t.edge_transition with
+      | Skip -> Some s
+      | Return (e,_) ->
+        Some { s with return_value = Option.map (eval_exp s.state) e }
+      | Guard(e,_,_) ->
+        let v = eval_exp s.state e in
+        let v = compare_val Ne v false_result in
+        if Singleton_val.equal v false_result then None
+        else Some (update_state (reduce_state_true e) s)
+      | Prop _ -> Some s (*TODO: reduce ACSL annotations. *)
+      | Instr (i,stmt) -> transfer_instr i stmt s
+      | Enter b ->
+        Some (update_state (add_local_bindings b) s)
+      | Leave b ->
+        Some (update_state (clear_local_bindings b) s)
   end
 and DataFlow:
   Interpreted_automata.DataflowAnalysis with type state = state =
@@ -325,7 +483,7 @@ let init is_lib =
     else Globals.Vars.fold add_glob_var CLval.Map.empty
   in
   let malloc_cnt = ref 0 in
-  { state; malloc_cnt }
+  { state; malloc_cnt; return_value = None }
 
 (* TODO: memoize computation. *)
 let compute () =
@@ -379,6 +537,7 @@ module Debloating_done =
 let debloat () =
   if not (Debloating_done.get()) then begin
     Debloating_done.set true;
+    Alias.Analysis.compute ();
     let result = compute () in
     let prj =
       create_debloating_project (Options.Project_name.get()) result
