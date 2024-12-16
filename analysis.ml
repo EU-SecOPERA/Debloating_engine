@@ -1,7 +1,9 @@
 open Cil_types
 open Values
 
-let dkey = Options.register_category "analysis"
+let analysis_dkey =
+  Options.register_category ~help:"constant propagation analysis" "analysis"
+let rm_dkey = Options.register_category ~help:"debloating project build" "erase"
 
 let singleton_join s1 s2 =
   if Singleton_val.equal s1 s2 then s1 else CNotConstant
@@ -380,6 +382,7 @@ let clear_return s = { s with return_value = None }
 
 module rec Single_values: Interpreted_automata.Domain with type t = state =
   struct
+    let dkey = analysis_dkey
     type t = state
     let join s1 s2 =
       if s1.malloc_cnt != s2.malloc_cnt then
@@ -503,10 +506,14 @@ let compute () =
       s (Kernel_function.get_formals main)
   in
   let init_state = update_state add_formals init_state in
-  Options.debug ~dkey "Computing";
-  DataFlow.fixpoint main init_state
+  let res = DataFlow.fixpoint main init_state in
+  let s = Kernel_function.find_first_stmt main in
+  if Option.is_none (DataFlow.Result.before res s) then
+    Options.fatal "Main function is unreachable!"
+  else res
 
 class debloat_visitor prj result =
+  let dkey = rm_dkey in
   object(self)
     inherit Visitor.frama_c_refresh prj
 
@@ -519,8 +526,12 @@ class debloat_visitor prj result =
 
     method! vstmt_aux s =
       let loc = Cil_datatype.Stmt.loc s in
-      match DataFlow.Result.before result s with
-      | None -> s.skind <- Instr (Skip loc); Cil.SkipChildren
+      match DataFlow.Result.before result
+        (Visitor_behavior.Get_orig.stmt self#behavior s)
+      with
+      | None ->
+        Options.debug ~dkey "Statement %a is dead" Printer.pp_stmt s;  
+        s.skind <- Instr (Skip loc); Cil.SkipChildren
       | Some _ -> Cil.DoChildren
 
     method! vglob_aux =
@@ -533,7 +544,9 @@ class debloat_visitor prj result =
            Options.feedback "Function %a is never called" Kernel_function.pretty kf;
            let decl = GFunDecl(Cil.empty_funspec(), f.svar, loc) in
            Cil.ChangeDoChildrenPost([decl], fun x -> x)
-         | Some _ -> Cil.DoChildren)
+         | Some _ -> 
+            Options.debug ~dkey "Treating %a" Kernel_function.pretty kf;
+            Cil.DoChildren)
       | _ -> Cil.JustCopy
   end
 
