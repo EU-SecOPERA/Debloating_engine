@@ -372,13 +372,18 @@ let assign_lval stmt (h,o as lv) v s1 s2 =
 (* counter is shared across branches, not merely mutable. *)
 type state =
   { state: Singleton_val.t CLval.Map.t;
+    call_stack: Kernel_function.t list;
     malloc_cnt: int ref;
     return_value: Singleton_val.t option
   }
 
 let update_state f s = let state = f s.state in { s with state }
 
-let clear_return s = { s with return_value = None }
+let clear_return s =
+  match s.call_stack with
+  | [] -> Options.fatal "return outside of a call stack"
+  | _::call_stack ->
+    { s with return_value = None; call_stack }
 
 module rec Single_values: Interpreted_automata.Domain with type t = state =
   struct
@@ -398,21 +403,29 @@ module rec Single_values: Interpreted_automata.Domain with type t = state =
 
     let mk_call stmt pre lv kf args =
       Options.debug ~dkey "Considering call to %a" Kernel_function.pretty kf;
-      if Kernel_function.has_noreturn_attr kf then None
-      else if Kernel_function.has_definition kf then begin
-        let with_formals = update_state (add_formals kf args) pre in
-        let res = DataFlow.fixpoint kf with_formals in
-        DataFlow.Result.at_return res |>
-        Option.map
-          (fun s ->
-             (match lv with
-              | None -> clear_return s
-            |   Some lv ->
-              let v = Option.value s.return_value ~default:CNotConstant in
-              update_state (assign_lval stmt lv v pre.state) s |> clear_return))
+      if List.exists (Kernel_function.equal kf) pre.call_stack then begin
+        Options.warning "Recursive call detected for %a, approximating"
+          Kernel_function.pretty kf;
+        Some (update_state havoc_state pre)
       end else begin
-          Some (update_state havoc_state pre)
+        let pre = { pre with call_stack = kf :: pre.call_stack } in
+        if Kernel_function.has_noreturn_attr kf then None
+        else if Kernel_function.has_definition kf then begin
+          let with_formals = update_state (add_formals kf args) pre in
+          let res = DataFlow.fixpoint kf with_formals in
+          DataFlow.Result.at_return res |>
+          Option.map
+            (fun s ->
+              (match lv with
+                | None -> clear_return s
+              |   Some lv ->
+                let v = Option.value s.return_value ~default:CNotConstant in
+                update_state (assign_lval stmt lv v pre.state) s |> clear_return))
+        end else begin
+            Some (update_state havoc_state (clear_return pre))
+        end
       end
+
     let multiple_calls stmt pre lv args f res =
       let kf = Globals.Functions.get f in
       let new_res = mk_call stmt pre lv kf args in
@@ -485,7 +498,7 @@ and DataFlow:
   Interpreted_automata.ForwardAnalysis(Single_values)
 
 (* TODO: real init. *)
-let init is_lib =
+let init main_kf is_lib =
   let state =
     if is_lib then
       Globals.Vars.fold
@@ -494,12 +507,12 @@ let init is_lib =
     else Globals.Vars.fold add_glob_var CLval.Map.empty
   in
   let malloc_cnt = ref 0 in
-  { state; malloc_cnt; return_value = None }
+  { state; malloc_cnt; return_value = None; call_stack = [main_kf] }
 
 (* TODO: memoize computation. *)
 let compute () =
   let main, is_lib = Globals.entry_point () in
-  let init_state = init is_lib in
+  let init_state = init main is_lib in
   let add_formals s =
     List.fold_left
       (fun acc v -> CLval.Map.add (Var v,CNoOffset) CNotConstant acc)
