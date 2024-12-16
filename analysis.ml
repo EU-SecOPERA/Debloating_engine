@@ -395,17 +395,21 @@ module rec Single_values: Interpreted_automata.Domain with type t = state =
 
     let mk_call stmt pre lv kf args =
       Options.debug ~dkey "Considering call to %a" Kernel_function.pretty kf;
-      let with_formals = update_state (add_formals kf args) pre in
-      let res = DataFlow.fixpoint kf with_formals in
-      DataFlow.Result.at_return res |>
-      Option.map
-        (fun s ->
-           (match lv with
-            | None -> clear_return s
-            | Some lv ->
+      if Kernel_function.has_noreturn_attr kf then None
+      else if Kernel_function.has_definition kf then begin
+        let with_formals = update_state (add_formals kf args) pre in
+        let res = DataFlow.fixpoint kf with_formals in
+        DataFlow.Result.at_return res |>
+        Option.map
+          (fun s ->
+             (match lv with
+              | None -> clear_return s
+            |   Some lv ->
               let v = Option.value s.return_value ~default:CNotConstant in
               update_state (assign_lval stmt lv v pre.state) s |> clear_return))
-
+      end else begin
+          Some (update_state havoc_state pre)
+      end
     let multiple_calls stmt pre lv args f res =
       let kf = Globals.Functions.get f in
       let new_res = mk_call stmt pre lv kf args in
