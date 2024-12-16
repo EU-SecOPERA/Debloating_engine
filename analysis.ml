@@ -569,8 +569,16 @@ let debloat () =
     let prj =
       create_debloating_project (Options.Project_name.get()) result
     in
+    let main_kf, _ = Project.on prj Globals.entry_point () in
+    let isRoot =
+      function
+      | GFun (f,_) ->
+        let kf = Globals.Functions.get f.svar in
+        Kernel_function.equal kf main_kf
+      | _ -> false
+    in
     Project.on prj
-      (fun () -> Rmtmps.removeUnused ~isRoot:(fun _ -> false) (Ast.get ())) ();
+      (fun () -> Rmtmps.removeUnused ~isRoot (Ast.get ())) ();
   end
 
 let function_called kf =
