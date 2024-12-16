@@ -122,5 +122,9 @@ module Singleton_val = Datatype.Make(
 
     let equal = Datatype.from_compare
 
+    let pretty fmt = function
+    | CConst c -> Printer.pp_constant fmt c
+    | CPtr lv -> Format.fprintf fmt "&(%a)" CLval.pretty lv
+    | CNotConstant -> Format.pp_print_string fmt "Top"
   end
 )

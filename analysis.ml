@@ -1,6 +1,8 @@
 open Cil_types
 open Values
 
+let dkey = Options.register_category "analysis"
+
 let singleton_join s1 s2 =
   if Singleton_val.equal s1 s2 then s1 else CNotConstant
 
@@ -392,6 +394,7 @@ module rec Single_values: Interpreted_automata.Domain with type t = state =
       else Interpreted_automata.Widening res
 
     let mk_call stmt pre lv kf args =
+      Options.debug ~dkey "Considering call to %a" Kernel_function.pretty kf;
       let with_formals = update_state (add_formals kf args) pre in
       let res = DataFlow.fixpoint kf with_formals in
       DataFlow.Result.at_return res |>
@@ -444,7 +447,6 @@ module rec Single_values: Interpreted_automata.Domain with type t = state =
         mk_call stmt s ret_lv kf args
       | Asm _ -> Some (update_state havoc_state s)
       | Code_annot _ -> Some s
-
     let transfer _v t s =
       let open Interpreted_automata in
       match t.edge_transition with
@@ -453,9 +455,13 @@ module rec Single_values: Interpreted_automata.Domain with type t = state =
         Some { s with return_value = Option.map (eval_exp s.state) e }
       | Guard(e,_,_) ->
         let v = eval_exp s.state e in
+        Options.debug ~dkey "Evaluating %a to %a"
+         Printer.pp_exp e Singleton_val.pretty v;
         let v = compare_val Ne v false_result in
-        if Singleton_val.equal v false_result then None
-        else Some (update_state (reduce_state_true e) s)
+        if Singleton_val.equal v false_result then begin
+          Options.debug ~dkey "Dead branch";
+          None
+        end else Some (update_state (reduce_state_true e) s)
       | Prop _ -> Some s (*TODO: reduce ACSL annotations. *)
       | Instr (i,stmt) -> transfer_instr i stmt s
       | Enter b ->
@@ -489,6 +495,7 @@ let compute () =
       s (Kernel_function.get_formals main)
   in
   let init_state = update_state add_formals init_state in
+  Options.debug ~dkey "Computing";
   DataFlow.fixpoint main init_state
 
 class debloat_visitor prj result =
