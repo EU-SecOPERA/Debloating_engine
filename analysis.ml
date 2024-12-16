@@ -511,9 +511,14 @@ class debloat_visitor prj result =
     method! vglob_aux =
       function
       | GFun (f, loc) ->
-        let decl = GFunDecl(Cil.empty_funspec(), f.svar, loc) in
-        Cil.ChangeDoChildrenPost([decl], fun x -> x)
-
+        let kf = Option.get self#current_kf in
+        let s = Kernel_function.find_first_stmt kf in
+        (match DataFlow.Result.before result s with
+         | None ->
+           Options.feedback "Function %a is never called" Kernel_function.pretty kf;
+           let decl = GFunDecl(Cil.empty_funspec(), f.svar, loc) in
+           Cil.ChangeDoChildrenPost([decl], fun x -> x)
+         | Some _ -> Cil.DoChildren)
       | _ -> Cil.JustCopy
   end
 
