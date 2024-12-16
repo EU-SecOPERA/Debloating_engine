@@ -453,12 +453,16 @@ module rec Single_values: Interpreted_automata.Domain with type t = state =
       | Skip -> Some s
       | Return (e,_) ->
         Some { s with return_value = Option.map (eval_exp s.state) e }
-      | Guard(e,_,_) ->
+      | Guard(e,k,_) ->
         let v = eval_exp s.state e in
+        let res = match k with
+          | Then -> false_result
+          | Else -> true_result
+        in
         Options.debug ~dkey "Evaluating %a to %a"
          Printer.pp_exp e Singleton_val.pretty v;
         let v = compare_val Ne v false_result in
-        if Singleton_val.equal v false_result then begin
+        if Singleton_val.equal v res then begin
           Options.debug ~dkey "Dead branch";
           None
         end else Some (update_state (reduce_state_true e) s)
