@@ -295,15 +295,9 @@ let rec init_lval b o init s =
 let reduce_state_true _e s = s
 
 let add_glob_var v i s =
-  let init =
-    match i.init with
-    | None -> CNotConstant
-    | Some (SingleInit e) -> eval_exp CLval.Map.empty e
-    | Some (CompoundInit (_,_l)) ->
-      Options.not_yet_implemented
-        ~source:(fst v.vdecl) "Compound Initialization"
-  in
-  CLval.Map.add (Var v, CNoOffset) init s
+  match i.init with
+  | Some i -> init_lval (Var v) CNoOffset i s
+  | None -> s
 
 let add_formals kf args s =
   let formals = Kernel_function.get_formals kf in
