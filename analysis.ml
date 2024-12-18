@@ -251,15 +251,15 @@ let rec eval_exp env e =
 and eval_addrof env (host,offset) =
   let open Option.Operators in
   (let* b,o =
-    match host with
-    | Cil_types.Var v -> Some (Var v, CNoOffset)
-    | Mem e ->
-      (match eval_exp env e with
-       | CPtr clv -> Some clv
-       | _ -> None)
-  in
-  let+ o = add_offset env o offset in
-  CPtr (b,o)) |> Option.value ~default:CNotConstant
+     match host with
+     | Cil_types.Var v -> Some (Var v, CNoOffset)
+     | Mem e ->
+       (match eval_exp env e with
+        | CPtr clv -> Some clv
+        | _ -> None)
+   in
+   let+ o = add_offset env o offset in
+   CPtr (b,o)) |> Option.value ~default:CNotConstant
 
 and add_offset env o =
   function
@@ -363,11 +363,11 @@ let assign_lval stmt (h,o as lv) v s1 s2 =
   | Cil_types.Var vi -> strong_update (Var vi) (add_offset s1 CNoOffset o) v s2
   | Mem e ->
     (match eval_exp s1 e with
-    | CPtr (h',o') -> strong_update h' (add_offset s1 o' o) v s2
-    | _ ->
-      let aliases = Alias.API.Statement.alias_lvals ~stmt lv in
-      let update_one alias s = (shallow_update alias v s1) s in
-      Cil_datatype.LvalStructEq.Set.fold update_one aliases s2)
+     | CPtr (h',o') -> strong_update h' (add_offset s1 o' o) v s2
+     | _ ->
+       let aliases = Alias.API.Statement.alias_lvals ~stmt lv in
+       let update_one alias s = (shallow_update alias v s1) s in
+       Cil_datatype.LvalStructEq.Set.fold update_one aliases s2)
 
 (* counter is shared across branches, not merely mutable. *)
 type state =
@@ -385,117 +385,131 @@ let clear_return s =
   | _::call_stack ->
     { s with return_value = None; call_stack }
 
-module rec Single_values: Interpreted_automata.Domain with type t = state =
+module Reachable_stmts =
+  State_builder.Set_ref(Cil_datatype.Stmt.Set)(
   struct
-    let dkey = analysis_dkey
-    type t = state
-    let join s1 s2 =
-      if s1.malloc_cnt != s2.malloc_cnt then
-        Options.fatal "Unshared malloc counter";
-      let state = map_join s1.state s2.state in
-      { s1 with state }
+    let name = "Debloating.Analysis.Reachable_stmts"
+    let dependencies = [ Ast.self; Kernel.MainFunction.self; ]
+  end)
 
-    let widen s1 s2 =
-      let res = join s1 s2 in
-      if CLval.Map.equal Singleton_val.equal s1.state res.state then
-        Interpreted_automata.Fixpoint
-      else Interpreted_automata.Widening res
+module rec Single_values: Interpreted_automata.Domain with type t = state =
+struct
+  let dkey = analysis_dkey
+  type t = state
+  let join s1 s2 =
+    if s1.malloc_cnt != s2.malloc_cnt then
+      Options.fatal "Unshared malloc counter";
+    let state = map_join s1.state s2.state in
+    { s1 with state }
 
-    let mk_call stmt pre lv kf args =
-      Options.debug ~dkey "Considering call to %a" Kernel_function.pretty kf;
-      if List.exists (Kernel_function.equal kf) pre.call_stack then begin
-        Options.warning "Recursive call detected for %a, approximating"
-          Kernel_function.pretty kf;
-        Some (update_state havoc_state pre)
-      end else begin
-        let pre = { pre with call_stack = kf :: pre.call_stack } in
-        if Kernel_function.has_noreturn_attr kf then None
-        else if Kernel_function.has_definition kf then begin
-          let with_formals = update_state (add_formals kf args) pre in
-          let res = DataFlow.fixpoint kf with_formals in
-          DataFlow.Result.at_return res |>
-          Option.map
-            (fun s ->
-              (match lv with
-                | None -> clear_return s
+  let widen s1 s2 =
+    let res = join s1 s2 in
+    if CLval.Map.equal Singleton_val.equal s1.state res.state then
+      Interpreted_automata.Fixpoint
+    else Interpreted_automata.Widening res
+
+  let mk_call stmt pre lv kf args =
+    Options.debug ~dkey "Considering call to %a" Kernel_function.pretty kf;
+    if List.exists (Kernel_function.equal kf) pre.call_stack then begin
+      Options.warning "Recursive call detected for %a, approximating"
+        Kernel_function.pretty kf;
+      Some (update_state havoc_state pre)
+    end else begin
+      let pre = { pre with call_stack = kf :: pre.call_stack } in
+      if Kernel_function.has_noreturn_attr kf then None
+      else if Kernel_function.has_definition kf then begin
+        let with_formals = update_state (add_formals kf args) pre in
+        let res = DataFlow.fixpoint kf with_formals in
+        DataFlow.Result.at_return res |>
+        Option.map
+          (fun s ->
+             (match lv with
+              | None -> clear_return s
               |   Some lv ->
                 let v = Option.value s.return_value ~default:CNotConstant in
                 update_state (assign_lval stmt lv v pre.state) s |> clear_return))
-        end else begin
-            Some (update_state havoc_state (clear_return pre))
-        end
+      end else begin
+        Some (update_state havoc_state (clear_return pre))
       end
+    end
 
-    let multiple_calls stmt pre lv args f res =
+  let multiple_calls stmt pre lv args f res =
+    let kf = Globals.Functions.get f in
+    let new_res = mk_call stmt pre lv kf args in
+    match res, new_res with
+    | None, r | r, None -> r
+    | Some s1, Some s2 ->
+      Some (update_state (fun s -> map_join s s2.state) s1)
+
+  let transfer_instr i stmt s =
+    match i with
+    | Skip _ -> Some s
+    | Set (lv, e, _) ->
+      let v = eval_exp s.state e in
+      Some (update_state (assign_lval stmt lv v s.state) s)
+    | Call(lv,f,args,_) ->
+      let args = List.map (eval_exp s.state) args in
+      (match f.enode with
+       | Lval(Var f, NoOffset) ->
+         let kf = Globals.Functions.get f in
+         mk_call stmt s lv kf args
+       | Lval lvf ->
+         let sf = Alias.API.Statement.alias_vars ~stmt lvf in
+         Cil_datatype.Varinfo.Set.fold
+           (multiple_calls stmt s lv args) sf None
+       | _ ->
+         Options.fatal "Unexpected expression as called function: %a"
+           Printer.pp_exp f)
+    | Local_init (vi, AssignInit init, _) ->
+      Some (update_state (init_lval (Var vi) CNoOffset init) s)
+    | Local_init (vi, ConsInit(f, args, kind),loc) ->
       let kf = Globals.Functions.get f in
-      let new_res = mk_call stmt pre lv kf args in
-      match res, new_res with
-      | None, r | r, None -> r
-      | Some s1, Some s2 ->
-        Some (update_state (fun s -> map_join s s2.state) s1)
-
-    let transfer_instr i stmt s =
-      match i with
-      | Skip _ -> Some s
-      | Set (lv, e, _) ->
-        let v = eval_exp s.state e in
-        Some (update_state (assign_lval stmt lv v s.state) s)
-      | Call(lv,f,args,_) ->
-        let args = List.map (eval_exp s.state) args in
-        (match f.enode with
-         | Lval(Var f, NoOffset) ->
-           let kf = Globals.Functions.get f in
-           mk_call stmt s lv kf args
-         | Lval lvf ->
-           let sf = Alias.API.Statement.alias_vars ~stmt lvf in
-           Cil_datatype.Varinfo.Set.fold
-             (multiple_calls stmt s lv args) sf None
-         | _ ->
-           Options.fatal "Unexpected expression as called function: %a"
-             Printer.pp_exp f)
-      | Local_init (vi, AssignInit init, _) ->
-        Some (update_state (init_lval (Var vi) CNoOffset init) s)
-      | Local_init (vi, ConsInit(f, args, kind),loc) ->
-        let kf = Globals.Functions.get f in
-        let lv = Cil_types.Var vi, NoOffset in
-        let ret_lv, args =
-          match kind with
-          | Plain_func -> Some lv, args
-          | Constructor -> None, Cil.mkAddrOf ~loc lv :: args
-        in
-        let args = List.map (eval_exp s.state) args in
-        mk_call stmt s ret_lv kf args
-      | Asm _ -> Some (update_state havoc_state s)
-      | Code_annot _ -> Some s
-    let transfer _v t s =
-      let open Interpreted_automata in
-      match t.edge_transition with
-      | Skip -> Some s
-      | Return (e,_) ->
-        Some { s with return_value = Option.map (eval_exp s.state) e }
-      | Guard(e,k,_) ->
-        let v = eval_exp s.state e in
-        let res = match k with
-          | Then -> false_result
-          | Else -> true_result
-        in
-        Options.debug ~dkey "Evaluating %a to %a"
-         Printer.pp_exp e Singleton_val.pretty v;
-        let v = compare_val Ne v false_result in
-        if Singleton_val.equal v res then begin
-          Options.debug ~dkey "Dead branch";
-          None
-        end else Some (update_state (reduce_state_true e) s)
-      | Prop _ -> Some s (*TODO: reduce ACSL annotations. *)
-      | Instr (i,stmt) -> transfer_instr i stmt s
-      | Enter b ->
-        Some (update_state (add_local_bindings b) s)
-      | Leave b ->
-        Some (update_state (clear_local_bindings b) s)
-  end
+      let lv = Cil_types.Var vi, NoOffset in
+      let ret_lv, args =
+        match kind with
+        | Plain_func -> Some lv, args
+        | Constructor -> None, Cil.mkAddrOf ~loc lv :: args
+      in
+      let args = List.map (eval_exp s.state) args in
+      mk_call stmt s ret_lv kf args
+    | Asm _ -> Some (update_state havoc_state s)
+    | Code_annot _ -> Some s
+  let transfer _v t s =
+    let open Interpreted_automata in
+    match t.edge_transition with
+    | Skip -> Some s
+    | Return (e,_) ->
+      Some { s with return_value = Option.map (eval_exp s.state) e }
+    | Guard(e,k,_) ->
+      let v = eval_exp s.state e in
+      let res = match k with
+        | Then -> false_result
+        | Else -> true_result
+      in
+      Options.debug ~dkey "Evaluating %a to %a"
+        Printer.pp_exp e Singleton_val.pretty v;
+      let v = compare_val Ne v false_result in
+      if Singleton_val.equal v res then begin
+        Options.debug ~dkey "Dead branch";
+        None
+      end else Some (update_state (reduce_state_true e) s)
+    | Prop _ -> Some s (*TODO: reduce ACSL annotations. *)
+    | Instr (i,stmt) -> transfer_instr i stmt s
+    | Enter b ->
+      Some (update_state (add_local_bindings b) s)
+    | Leave b ->
+      Some (update_state (clear_local_bindings b) s)
+end
 and DataFlow:
   Interpreted_automata.DataflowAnalysis with type state = state =
-  Interpreted_automata.ForwardAnalysis(Single_values)
+struct
+  include Interpreted_automata.ForwardAnalysis(Single_values)
+  let fixpoint ?wto kf pre_state =
+    let res = fixpoint ?wto kf pre_state in
+    (* unreachable statements are ignored by the iteration. *)
+    Result.iter_stmt (fun s _ -> Reachable_stmts.add s) res;
+    res      
+end
 
 (* TODO: real init. *)
 let init main_kf is_lib =
@@ -509,23 +523,25 @@ let init main_kf is_lib =
   let malloc_cnt = ref 0 in
   { state; malloc_cnt; return_value = None; call_stack = [main_kf] }
 
-(* TODO: memoize computation. *)
 let compute () =
-  let main, is_lib = Globals.entry_point () in
-  let init_state = init main is_lib in
-  let add_formals s =
-    List.fold_left
-      (fun acc v -> CLval.Map.add (Var v,CNoOffset) CNotConstant acc)
-      s (Kernel_function.get_formals main)
-  in
-  let init_state = update_state add_formals init_state in
-  let res = DataFlow.fixpoint main init_state in
-  let s = Kernel_function.find_first_stmt main in
-  if Option.is_none (DataFlow.Result.before res s) then
-    Options.fatal "Main function is unreachable!"
-  else res
+  if not (Reachable_stmts.is_computed ()) then begin
+    Alias.Analysis.compute ();
+    let main, is_lib = Globals.entry_point () in
+    let init_state = init main is_lib in
+    let add_formals s =
+      List.fold_left
+        (fun acc v -> CLval.Map.add (Var v,CNoOffset) CNotConstant acc)
+        s (Kernel_function.get_formals main)
+    in
+    let init_state = update_state add_formals init_state in
+    let res = DataFlow.fixpoint main init_state in
+    Reachable_stmts.mark_as_computed();
+    let s = Kernel_function.find_first_stmt main in
+    if Option.is_none (DataFlow.Result.before res s) then
+      Options.fatal "Main function is unreachable!"
+  end
 
-class debloat_visitor prj result =
+class debloat_visitor prj =
   let dkey = rm_dkey in
   object(self)
     inherit Visitor.frama_c_refresh prj
@@ -539,62 +555,50 @@ class debloat_visitor prj result =
 
     method! vstmt_aux s =
       let loc = Cil_datatype.Stmt.loc s in
-      match DataFlow.Result.before result
-        (Visitor_behavior.Get_orig.stmt self#behavior s)
-      with
-      | None ->
+      let orig_s = Visitor_behavior.Get_orig.stmt self#behavior s in
+      if Reachable_stmts.mem orig_s then Cil.DoChildren
+      else begin
         Options.debug ~dkey "Statement %a is dead" Printer.pp_stmt s;  
         s.skind <- Instr (Skip loc); Cil.SkipChildren
-      | Some _ -> Cil.DoChildren
+      end
 
     method! vglob_aux =
       function
       | GFun (f, loc) ->
         let kf = Option.get self#current_kf in
         let s = Kernel_function.find_first_stmt kf in
-        (match DataFlow.Result.before result s with
-         | None ->
-           Options.feedback "Function %a is never called" Kernel_function.pretty kf;
-           let decl = GFunDecl(Cil.empty_funspec(), f.svar, loc) in
-           Cil.ChangeDoChildrenPost([decl], fun x -> x)
-         | Some _ -> 
-            Options.debug ~dkey "Treating %a" Kernel_function.pretty kf;
-            Cil.DoChildren)
+        if Reachable_stmts.mem s then begin
+          Options.debug ~dkey "Treating %a" Kernel_function.pretty kf;
+          Cil.DoChildren
+        end else begin
+          Options.debug ~dkey
+            "Function %a is never called" Kernel_function.pretty kf;
+          let decl = GFunDecl(Cil.empty_funspec(), f.svar, loc) in
+          Cil.ChangeDoChildrenPost([decl], fun x -> x)
+        end
       | _ -> Cil.JustCopy
   end
 
-let create_debloating_project name result =
-  let vis prj = new debloat_visitor prj result in
+let create_debloating_project name =
+  let vis prj = new debloat_visitor prj in
   File.create_project_from_visitor name vis
 
-module Debloating_done =
-  State_builder.False_ref(
-    struct
-      let name = "Analysis.Debloating_done"
-      let dependencies = [ Ast.self; Options.Project_name.self ]
-    end)
-
 let debloat () =
-  if not (Debloating_done.get()) then begin
-    Debloating_done.set true;
-    Alias.Analysis.compute ();
-    let result = compute () in
-    let prj =
-      create_debloating_project (Options.Project_name.get()) result
-    in
-    let main_kf, _ = Project.on prj Globals.entry_point () in
-    let isRoot =
-      function
-      | GFun (f,_) ->
-        let kf = Globals.Functions.get f.svar in
-        Kernel_function.equal kf main_kf
-      | _ -> false
-    in
-    Project.on prj
-      (fun () -> Rmtmps.removeUnused ~isRoot (Ast.get ())) ();
-  end
+  compute();
+  let prj =
+    create_debloating_project (Options.Project_name.get())
+  in
+  let main_kf, _ = Project.on prj Globals.entry_point () in
+  let isRoot =
+    function
+    | GFun (f,_) ->
+      let kf = Globals.Functions.get f.svar in
+      Kernel_function.equal kf main_kf
+    | _ -> false
+  in
+  Project.on prj
+    (fun () -> Rmtmps.removeUnused ~isRoot (Ast.get ())) ()
 
 let function_called kf =
-  let result = compute () in
-  DataFlow.Result.before result (Kernel_function.find_first_stmt kf)
-  |> Option.is_some
+  compute ();
+  Reachable_stmts.mem (Kernel_function.find_first_stmt kf)
