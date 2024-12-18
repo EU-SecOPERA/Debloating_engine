@@ -523,6 +523,34 @@ let init main_kf is_lib =
   let malloc_cnt = ref 0 in
   { state; malloc_cnt; return_value = None; call_stack = [main_kf] }
 
+let cleanup_fundec f =
+  let preserve_labels s =
+    if s.labels <> [] then begin
+      s.skind <- (Instr (Skip (Cil_datatype.Stmt.loc s)));
+      Some s
+    end else None
+  in
+  let rec aux s =
+      match s.skind with
+      | Block b ->
+        cleanup_block b;
+        if b.bstmts = [] then preserve_labels s else Some s
+      | Instr (Skip _) when s.labels = [] -> None
+      | If(_,b1,b2,_) ->
+          cleanup_block b1;
+          cleanup_block b2;
+          if b1.bstmts = [] && b2.bstmts = [] then preserve_labels s
+          else begin
+            if b1.bstmts = [] then begin s.skind <- Block b2; Some s end
+            else if b2.bstmts = [] then begin s.skind <- Block b1; Some s end
+            else Some s
+          end
+      | Loop(_,b,_,_,_) -> cleanup_block b; Some s
+      | _ -> Some s
+  and cleanup_block b = b.bstmts <- List.filter_map aux b.bstmts
+  in
+  cleanup_block f.sbody; f
+
 let compute () =
   if not (Reachable_stmts.is_computed ()) then begin
     Alias.Analysis.compute ();
@@ -546,26 +574,29 @@ class debloat_visitor prj =
   object(self)
     inherit Visitor.frama_c_refresh prj
 
-    method! vvdec v =
-      let vorig = Visitor_behavior.Get_orig.varinfo self#behavior v in
-      let v = { v with vtemp = true } (* mark it as removable. *) in
-      Visitor_behavior.Set.varinfo self#behavior vorig v;
-      Visitor_behavior.Set_orig.varinfo self#behavior v vorig;
-      Cil.ChangeDoChildrenPost(v,fun x->x)
-
     method! vstmt_aux s =
       let loc = Cil_datatype.Stmt.loc s in
       let orig_s = Visitor_behavior.Get_orig.stmt self#behavior s in
-      if Reachable_stmts.mem orig_s then Cil.DoChildren
-      else begin
+      match s.skind with
+      | Return _ -> Cil.DoChildren
+      | _ when Reachable_stmts.mem orig_s -> Cil.DoChildren
+      | _ ->
         Options.debug ~dkey "Statement %a is dead" Printer.pp_stmt s;  
         s.skind <- Instr (Skip loc); Cil.SkipChildren
-      end
+
+    method! vfunc _ = Cil.DoChildrenPost cleanup_fundec
+
+    method! vvrbl v =
+      let v' = Visitor_behavior.Get_orig.varinfo self#behavior v in
+      if v.vname = "default_bzalloc" then
+        Options.feedback "%s(%d) -> %s(%d)" v'.vname v'.vid v.vname v.vid;
+      DoChildren
 
     method! vglob_aux =
       function
-      | GFun (f, loc) ->
+      | GFun (_, loc) ->
         let kf = Option.get self#current_kf in
+        let new_kf = Visitor_behavior.Get.kernel_function self#behavior kf in
         let s = Kernel_function.find_first_stmt kf in
         if Reachable_stmts.mem s then begin
           Options.debug ~dkey "Treating %a" Kernel_function.pretty kf;
@@ -573,8 +604,21 @@ class debloat_visitor prj =
         end else begin
           Options.debug ~dkey
             "Function %a is never called" Kernel_function.pretty kf;
-          let decl = GFunDecl(Cil.empty_funspec(), f.svar, loc) in
-          Cil.ChangeDoChildrenPost([decl], fun x -> x)
+          let v = Kernel_function.get_vi new_kf in
+          let ov = Visitor_behavior.Get_orig.varinfo self#behavior v in
+          Options.feedback "KF: %s(%d) -> %s(%d)" ov.vname ov.vid v.vname v.vid;
+          v.vdefined <- false;
+          let spec = Cil.empty_funspec () in 
+          let decl = GFunDecl(spec, v, loc) in
+          let formals = Kernel_function.get_formals kf in
+          let new_formals =
+            List.map
+              Visitor.(visitFramacVarDecl (self:>frama_c_visitor)) formals
+          in
+          Queue.add
+            (fun () -> Cil.unsafeSetFormalsDecl v new_formals)
+            self#get_filling_actions;
+          Cil.ChangeTo [decl]
         end
       | _ -> Cil.JustCopy
   end
@@ -588,6 +632,7 @@ let debloat () =
   let prj =
     create_debloating_project (Options.Project_name.get())
   in
+  Options.feedback "OK";
   let main_kf, _ = Project.on prj Globals.entry_point () in
   let isRoot =
     function
