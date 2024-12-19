@@ -579,10 +579,11 @@ class debloat_visitor prj =
       let orig_s = Visitor_behavior.Get_orig.stmt self#behavior s in
       match s.skind with
       | Return _ -> Cil.DoChildren
+      | Block _ | UnspecifiedSequence _ -> Cil.DoChildren
       | _ when Reachable_stmts.mem orig_s -> Cil.DoChildren
       | _ ->
         Options.debug ~dkey "Statement %a is dead" Printer.pp_stmt s;  
-        s.skind <- Instr (Skip loc); Cil.SkipChildren
+        s.skind <- Instr (Skip loc); Cil.JustCopy
 
     method! vfunc _ = Cil.DoChildrenPost cleanup_fundec
 
