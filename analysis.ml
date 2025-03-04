@@ -44,10 +44,10 @@ let true_result = int_result IBool Z.one
 let false_result = int_result IBool Z.zero
 
 let eval_int_unop op v t =
-  match Cil.unrollType t, op with
-  | TInt (k,_), Neg -> int_result k (Z.neg v)
-  | TInt (k,_), BNot -> int_result k (Z.lognot v)
-  | TInt (k,_), LNot -> int_result k Z.(if (equal zero v) then one else zero)
+  match (Ast_types.unroll t).tnode, op with
+  | TInt k, Neg -> int_result k (Z.neg v)
+  | TInt k, BNot -> int_result k (Z.lognot v)
+  | TInt k, LNot -> int_result k Z.(if (equal zero v) then one else zero)
   | _ -> CNotConstant
 
 let eval_unop op v t =
@@ -56,9 +56,9 @@ let eval_unop op v t =
   | CPtr _ -> CNotConstant
   | CConst (CInt64 (v,_,_)) -> eval_int_unop op v t
   | CConst (CReal (v,_,_)) ->
-    (match Cil.unrollType t, op with
-     | TInt (k, _), LNot -> int_result k (if v = 0. then Z.one else Z.zero)
-     | TFloat(k,_), Neg -> CConst (CReal (-. v,k,None))
+    (match (Ast_types.unroll t).tnode, op with
+     | TInt k, LNot -> int_result k (if v = 0. then Z.one else Z.zero)
+     | TFloat k, Neg -> CConst (CReal (-. v,k,None))
      | _ -> CNotConstant)
   | CConst (CEnum ei) ->
     let v =
@@ -161,9 +161,9 @@ let compute_offset_opt t o =
   let rec aux t o res =
     match o with
     | CNoOffset -> Some res
-    | CIndex (i,o) when Cil.isArrayType t ->
+    | CIndex (i,o) when Ast_types.is_array t ->
       (try
-         let elm = Cil.typeOf_array_elem t in
+         let elm = Ast_types.direct_element_type t in
          let sz = eval_sizeof_int elm in
          aux elm o (Z.(res + sz * i))
        with
@@ -217,19 +217,19 @@ let eval_binop op v1 v2 =
 let eval_cast t v =
   match v with
   | CNotConstant -> CNotConstant
-  | CPtr _ when Cil.isPointerType t -> v
+  | CPtr _ when Ast_types.is_ptr t -> v
   | CPtr _ -> CNotConstant
   | CConst (CInt64(z, _, _)) ->
-    (match Cil.unrollType t with
-     | TInt (k, _) -> int_result k z
-     | TEnum (e, _) -> int_result e.ekind z
+    (match (Ast_types.unroll t).tnode with
+     | TInt k -> int_result k z
+     | TEnum e -> int_result e.ekind z
      | _ -> CNotConstant)
   | CConst (CReal(v,_,_)) ->
-    (match Cil.unrollType t with
-     | TFloat(k,_) when Cil.isFiniteFloat k v -> CConst (CReal(v,k,None))
+    (match (Ast_types.unroll t).tnode with
+     | TFloat k when Cil.isFiniteFloat k v -> CConst (CReal(v,k,None))
      | TFloat _ -> CNotConstant
-     | TInt (k,_) -> int_result k (Z.of_float v)
-     | TEnum (e,_) -> int_result e.ekind (Z.of_float v)
+     | TInt k -> int_result k (Z.of_float v)
+     | TEnum e -> int_result e.ekind (Z.of_float v)
      | _ -> CNotConstant)
   | _ -> CNotConstant
 

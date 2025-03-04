@@ -89,7 +89,6 @@ module Constant_offset = Datatype.Make_with_collections(
 
 module CLval =
   Datatype.Pair_with_collections(Base_addr)(Constant_offset)
-    (struct let module_name = "Debloating.Value.CLval" end)
 
 type clval = CLval.t
 
