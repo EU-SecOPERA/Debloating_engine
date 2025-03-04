@@ -1,3 +1,649 @@
+[kernel] Parsing bzip2-1.0.5.c.origin.c (with preprocessing)
+[kernel:CERT:MSC:37] bzip2-1.0.5.c.origin.c:6129: Warning: 
+  Body of function unRLE_obuf_to_output_SMALL falls-through. Adding a return statement
+[kernel:typing:implicit-function-declaration] bzip2-1.0.5.c.origin.c:8334: Warning: 
+  Calling undeclared function fopen. Old style K&R code?
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:10762: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:10876: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:4669: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:4688: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:4723: Warning: 
+  function exit has no definition
+[alias:no-return] bzip2-1.0.5.c.origin.c:4663: Warning: 
+  function BZ2_bz__AssertH__fail does not return; analysis may be unsound
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:11016: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:11034: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:11721: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:11790: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:11939: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:12095: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:12152: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:12162: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:4553: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:3445: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:3537: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:3997: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:4010: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:4018: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:4218: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:4258: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:4321: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:4533: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:4600: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:4758: Warning: 
+  function free has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:6169: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:6176: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:1327: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:2591: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:6202: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:6874: Warning: 
+  function ferror has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:6267: Warning: 
+  function fgetc has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:6273: Warning: 
+  function ungetc has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:6890: Warning: 
+  function fread has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:6893: Warning: 
+  function ferror has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:6812: Warning: 
+  function free has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:6715: Warning: 
+  function ferror has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:6769: Warning: 
+  function free has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:6424: Warning: 
+  function ferror has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:6465: Warning: 
+  function fwrite has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:6473: Warning: 
+  function ferror has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:6534: Warning: 
+  function ferror has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:6580: Warning: 
+  function fwrite has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:6588: Warning: 
+  function ferror has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:6611: Warning: 
+  function ferror has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:6615: Warning: 
+  function fflush has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:6616: Warning: 
+  function ferror has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:6649: Warning: 
+  function free has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:6326: Warning: 
+  function ferror has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:6373: Warning: 
+  function free has no definition
+[alias:no-return] bzip2-1.0.5.c.origin.c:4663: Warning: 
+  function BZ2_bz__AssertH__fail does not return; analysis may be unsound
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9656: Warning: 
+  function getenv has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9671: Warning: 
+  function __ctype_b_loc has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9684: Warning: 
+  function __ctype_b_loc has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8242: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7974: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7995: Warning: 
+  function stat has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8001: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8011: Warning: 
+  function fclose has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8014: Warning: 
+  function remove has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8017: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8027: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8032: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8037: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8042: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8056: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8070: Warning: 
+  function exit has no definition
+[alias:no-return] bzip2-1.0.5.c.origin.c:7985: Warning: 
+  function cleanUpAndFail does not return; analysis may be unsound
+[alias:no-return] bzip2-1.0.5.c.origin.c:8238: Warning: 
+  function outOfMemory does not return; analysis may be unsound
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9623: Warning: 
+  function strlen has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9625: Warning: 
+  function strcpy has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8439: Warning: 
+  function fchmod has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8131: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8136: Warning: 
+  function perror has no definition
+[alias:no-return] bzip2-1.0.5.c.origin.c:8127: Warning: 
+  function ioError does not return; analysis may be unsound
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8445: Warning: 
+  function fchown has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8425: Warning: 
+  function utime has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7954: Warning: 
+  function fprintf has no definition
+[alias:no-return] bzip2-1.0.5.c.origin.c:7985: Warning: 
+  function cleanUpAndFail does not return; analysis may be unsound
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8079: Warning: 
+  function fprintf has no definition
+[alias:no-return] bzip2-1.0.5.c.origin.c:8075: Warning: 
+  function panic does not return; analysis may be unsound
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8305: Warning: 
+  function strlen has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8308: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8316: Warning: 
+  function exit has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8320: Warning: 
+  function strncpy has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8567: Warning: 
+  function strcat has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8586: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8334: Warning: 
+  function fopen has no definition
+[alias:unsafe-cast] bzip2-1.0.5.c.origin.c:8334: Warning: 
+  unsafe cast from int to FILE *; analysis may be unsound
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8341: Warning: 
+  function fclose has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8602: Warning: 
+  function __errno_location has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8603: Warning: 
+  function strerror has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8604: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8464: Warning: 
+  function strlen has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8466: Warning: 
+  function strlen has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8472: Warning: 
+  function strcmp has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8644: Warning: 
+  function stat has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8649: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8372: Warning: 
+  function lstat has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8668: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8686: Warning: 
+  function remove has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8690: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8391: Warning: 
+  function lstat has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8712: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8406: Warning: 
+  function stat has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8742: Warning: 
+  function fileno has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8743: Warning: 
+  function isatty has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8747: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8752: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8764: Warning: 
+  function fopen has no definition
+[alias:unsafe-cast] bzip2-1.0.5.c.origin.c:8764: Warning: 
+  unsafe cast from int to FILE *; analysis may be unsound
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8767: Warning: 
+  function fileno has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8768: Warning: 
+  function isatty has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8772: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8777: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8785: Warning: 
+  function fclose has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8793: Warning: 
+  function __errno_location has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8794: Warning: 
+  function strerror has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8795: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8807: Warning: 
+  function fopen has no definition
+[alias:unsafe-cast] bzip2-1.0.5.c.origin.c:8807: Warning: 
+  unsafe cast from int to FILE *; analysis may be unsound
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8352: Warning: 
+  function open has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8356: Warning: 
+  function fdopen has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8359: Warning: 
+  function close has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8813: Warning: 
+  function __errno_location has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8814: Warning: 
+  function strerror has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8815: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8822: Warning: 
+  function fclose has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8830: Warning: 
+  function __errno_location has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8831: Warning: 
+  function strerror has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8832: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8840: Warning: 
+  function fclose has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8856: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8278: Warning: 
+  function strlen has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8286: Warning: 
+  function strlen has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8291: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8859: Warning: 
+  function fflush has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7290: Warning: 
+  function ferror has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7295: Warning: 
+  function ferror has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7308: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7244: Warning: 
+  function fgetc has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7250: Warning: 
+  function ungetc has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7320: Warning: 
+  function fread has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7322: Warning: 
+  function ferror has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7345: Warning: 
+  function ferror has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7349: Warning: 
+  function fflush has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7355: Warning: 
+  function fileno has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7363: Warning: 
+  function fclose has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7372: Warning: 
+  function ferror has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7377: Warning: 
+  function fclose has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7385: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7399: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8257: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8268: Warning: 
+  function exit has no definition
+[alias:no-return] bzip2-1.0.5.c.origin.c:8253: Warning: 
+  function configError does not return; analysis may be unsound
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8875: Warning: 
+  function remove has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8625: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8112: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8118: Warning: 
+  function perror has no definition
+[alias:no-return] bzip2-1.0.5.c.origin.c:8107: Warning: 
+  function compressedStreamEOF does not return; analysis may be unsound
+[alias:no-return] bzip2-1.0.5.c.origin.c:8253: Warning: 
+  function configError does not return; analysis may be unsound
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8096: Warning: 
+  function fprintf has no definition
+[alias:no-return] bzip2-1.0.5.c.origin.c:8092: Warning: 
+  function crcError does not return; analysis may be unsound
+[alias:no-return] bzip2-1.0.5.c.origin.c:8127: Warning: 
+  function ioError does not return; analysis may be unsound
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9506: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9822: Warning: 
+  function signal has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9823: Warning: 
+  function signal has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9872: Warning: 
+  function strcmp has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9884: Warning: 
+  function strlen has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9888: Warning: 
+  function strlen has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9903: Warning: 
+  function strstr has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9908: Warning: 
+  function strstr has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9913: Warning: 
+  function strstr has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9917: Warning: 
+  function strstr has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9921: Warning: 
+  function strstr has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9925: Warning: 
+  function strstr has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9945: Warning: 
+  function strcmp has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:10118: Warning: 
+  function strcmp has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:10122: Warning: 
+  function strcmp has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:10126: Warning: 
+  function strcmp has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:10130: Warning: 
+  function strcmp has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:10134: Warning: 
+  function strcmp has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:10138: Warning: 
+  function strcmp has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:10142: Warning: 
+  function strcmp has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:10146: Warning: 
+  function strcmp has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:10150: Warning: 
+  function strcmp has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:10156: Warning: 
+  function strcmp has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:10165: Warning: 
+  function strcmp has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:10173: Warning: 
+  function strcmp has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:10180: Warning: 
+  function strcmp has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9579: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:10189: Warning: 
+  function strcmp has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:10198: Warning: 
+  function strcmp has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:10205: Warning: 
+  function strcmp has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:10213: Warning: 
+  function strcmp has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:10220: Warning: 
+  function strcmp has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:10231: Warning: 
+  function strncmp has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:10289: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:10293: Warning: 
+  function exit has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:10307: Warning: 
+  function signal has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:10308: Warning: 
+  function signal has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:10309: Warning: 
+  function signal has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:10326: Warning: 
+  function strcmp has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8491: Warning: 
+  function strlen has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8492: Warning: 
+  function strlen has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8494: Warning: 
+  function strcat has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8977: Warning: 
+  function strcat has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8997: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9013: Warning: 
+  function __errno_location has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9014: Warning: 
+  function strerror has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9015: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9030: Warning: 
+  function stat has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9035: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9054: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9068: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9082: Warning: 
+  function remove has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9086: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9108: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9138: Warning: 
+  function fileno has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9139: Warning: 
+  function isatty has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9143: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9148: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9160: Warning: 
+  function fopen has no definition
+[alias:unsafe-cast] bzip2-1.0.5.c.origin.c:9160: Warning: 
+  unsafe cast from int to FILE *; analysis may be unsound
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9166: Warning: 
+  function __errno_location has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9167: Warning: 
+  function strerror has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9168: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9176: Warning: 
+  function fclose has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9185: Warning: 
+  function fopen has no definition
+[alias:unsafe-cast] bzip2-1.0.5.c.origin.c:9185: Warning: 
+  unsafe cast from int to FILE *; analysis may be unsound
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9191: Warning: 
+  function __errno_location has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9192: Warning: 
+  function strerror has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9193: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9200: Warning: 
+  function fclose has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9208: Warning: 
+  function __errno_location has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9209: Warning: 
+  function strerror has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9210: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9218: Warning: 
+  function fclose has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9234: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9237: Warning: 
+  function fflush has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7485: Warning: 
+  function ferror has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7490: Warning: 
+  function ferror has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7526: Warning: 
+  function fwrite has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7533: Warning: 
+  function ferror has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7625: Warning: 
+  function rewind has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7636: Warning: 
+  function fread has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7638: Warning: 
+  function ferror has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7645: Warning: 
+  function fwrite has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7649: Warning: 
+  function ferror has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7579: Warning: 
+  function ferror has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7585: Warning: 
+  function fileno has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7593: Warning: 
+  function fclose has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7597: Warning: 
+  function ferror has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7601: Warning: 
+  function fflush has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7607: Warning: 
+  function fclose has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7617: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7705: Warning: 
+  function fclose has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7710: Warning: 
+  function fclose has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7718: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9254: Warning: 
+  function remove has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9269: Warning: 
+  function remove has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9283: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9291: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9296: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:10362: Warning: 
+  function strcmp has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:10385: Warning: 
+  function exit has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9369: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9385: Warning: 
+  function __errno_location has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9386: Warning: 
+  function strerror has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9387: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9398: Warning: 
+  function stat has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9403: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9426: Warning: 
+  function fileno has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9427: Warning: 
+  function isatty has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9431: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9436: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9450: Warning: 
+  function fopen has no definition
+[alias:unsafe-cast] bzip2-1.0.5.c.origin.c:9450: Warning: 
+  unsafe cast from int to FILE *; analysis may be unsound
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9455: Warning: 
+  function __errno_location has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9456: Warning: 
+  function strerror has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9457: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9476: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9479: Warning: 
+  function fflush has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7765: Warning: 
+  function ferror has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7837: Warning: 
+  function ferror has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7841: Warning: 
+  function fclose has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7847: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7855: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7892: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7903: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7910: Warning: 
+  function fclose has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7915: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:7923: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9489: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:10403: Warning: 
+  function strcmp has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:10426: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:10434: Warning: 
+  function exit has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:10450: Warning: 
+  function free has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:10454: Warning: 
+  function free has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:9535: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:10226: Warning: 
+  function exit has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:10236: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:10252: Warning: 
+  function exit has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:10086: Warning: 
+  function exit has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:10091: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:10096: Warning: 
+  function exit has no definition
+[alias:incoherent] Warning: 
+  cycle during readout of vertex 12457, (following unsafe cast?); analysis may be unsound
+[alias:incoherent] Warning: 
+  cycle during readout of vertex 12458, (following unsafe cast?); analysis may be unsound
+[alias] May-aliases at the end of function main:
+  { progName; progNameReally; tmp }  { argList->name; aa->name; aa2->name }
+  { argList; aa; aa2 }
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8159: Warning: 
+  function fprintf has no definition
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8190: Warning: 
+  function fprintf has no definition
+[alias:no-return] bzip2-1.0.5.c.origin.c:8154: Warning: 
+  function mySIGSEGVorSIGBUScatcher does not return; analysis may be unsound
+[alias:undefined:fn] bzip2-1.0.5.c.origin.c:8146: Warning: 
+  function fprintf has no definition
+[alias:no-return] bzip2-1.0.5.c.origin.c:8142: Warning: 
+  function mySignalCatcher does not return; analysis may be unsound
+[alias:no-return] bzip2-1.0.5.c.origin.c:8238: Warning: 
+  function outOfMemory does not return; analysis may be unsound
+[alias:no-return] bzip2-1.0.5.c.origin.c:8075: Warning: 
+  function panic does not return; analysis may be unsound
+[debloating] Warning: Recursive call detected for snocString, approximating
+[debloating] Warning: Recursive call detected for snocString, approximating
+[debloating] Warning: Recursive call detected for snocString, approximating
+[debloating] Warning: Recursive call detected for snocString, approximating
+[debloating] Warning: Recursive call detected for snocString, approximating
+[debloating] Warning: Recursive call detected for snocString, approximating
 /* Generated by Frama-C */
 typedef int Int32;
 typedef unsigned char Bool;
@@ -218,7 +864,6 @@ struct utimbuf {
    __time_t actime ;
    __time_t modtime ;
 };
-typedef short Int16;
 typedef int IntNative;
 struct __anonstruct_UInt64_56 {
    UChar b[8] ;
@@ -1032,6 +1677,9 @@ void BZ2_hbCreateDecodeTables(Int32 *limit, Int32 *base, Int32 *perm,
 
 extern struct _IO_FILE *stderr;
 
+extern int fprintf(FILE * restrict __stream, char const * restrict __format
+                   , ...);
+
 Int32 BZ2_indexIntoF(Int32 indx, Int32 *cftab);
 
 Int32 BZ2_decompress(DState *s);
@@ -1053,23 +1701,6 @@ static void makeMaps_d(DState *s)
   while_break: ;
   return;
 }
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: param0);
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), param0;
- */
-int fprintf_va_1(FILE * restrict __stream, char const * restrict __format,
-                 int param0);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..)));
-    assigns *__stream \from *__stream, (indirect: *(__format + (0 ..)));
- */
-int fprintf_va_2(FILE * restrict __stream, char const * restrict __format);
 
 Int32 BZ2_decompress(DState *s)
 {
@@ -1541,7 +2172,7 @@ Int32 BZ2_decompress(DState *s)
   }
   (s->currBlockNo) ++;
   if (s->verbosity >= 2) fprintf(stderr,"\n    [%d: huff+mtf ",
-                                 s->currBlockNo); /* fprintf_va_1 */
+                                 s->currBlockNo);
   s->storedBlockCRC = (UInt32)0;
   case_20: s->state = 20;
   while (1) {
@@ -2494,7 +3125,7 @@ Int32 BZ2_decompress(DState *s)
   s->state_out_ch = (UChar)0;
   s->calculatedBlockCRC = (UInt32)4294967295L;
   s->state = 2;
-  if (s->verbosity >= 2) fprintf(stderr,"rt+rld"); /* fprintf_va_2 */
+  if (s->verbosity >= 2) fprintf(stderr,"rt+rld");
   if (s->smallDecompress) {
     i = 0;
     while (1) {
@@ -3320,97 +3951,6 @@ static void generateMTFValues(EState *s)
   return;
 }
 
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: param2), (indirect: param1), (indirect: param0);
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), param2, param1,
-            param0;
- */
-int fprintf_va_3(FILE * restrict __stream, char const * restrict __format,
-                 int param0, int param1, int param2);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: param4), (indirect: param3), (indirect: param2),
-            (indirect: param1), (indirect: param0);
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), param4, param3,
-            param2, param1, param0;
- */
-int fprintf_va_4(FILE * restrict __stream, char const * restrict __format,
-                 int param0, int param1, int param2, int param3,
-                 double param4);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: param1), (indirect: param0);
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), param1, param0;
- */
-int fprintf_va_5(FILE * restrict __stream, char const * restrict __format,
-                 int param0, int param1);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: param0);
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), param0;
- */
-int fprintf_va_6(FILE * restrict __stream, char const * restrict __format,
-                 int param0);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..)));
-    assigns *__stream \from *__stream, (indirect: *(__format + (0 ..)));
- */
-int fprintf_va_7(FILE * restrict __stream, char const * restrict __format);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: param0);
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), param0;
- */
-int fprintf_va_8(FILE * restrict __stream, char const * restrict __format,
-                 int param0);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: param0);
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), param0;
- */
-int fprintf_va_9(FILE * restrict __stream, char const * restrict __format,
-                 int param0);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: param0);
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), param0;
- */
-int fprintf_va_10(FILE * restrict __stream, char const * restrict __format,
-                  int param0);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: param0);
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), param0;
- */
-int fprintf_va_11(FILE * restrict __stream, char const * restrict __format,
-                  int param0);
-
 static void sendMTFValues(EState *s)
 {
   Int32 v;
@@ -3458,7 +3998,7 @@ static void sendMTFValues(EState *s)
   mtfv = s->mtfv;
   if (s->verbosity >= 3) fprintf(stderr,
                                  "      %d in block, %d after MTF & 1-2 coding, %d+2 syms in use\n",
-                                 s->nblock,s->nMTF,s->nInUse); /* fprintf_va_3 */
+                                 s->nblock,s->nMTF,s->nInUse);
   alphaSize = s->nInUse + 2;
   t = 0;
   while (1) {
@@ -3512,7 +4052,7 @@ static void sendMTFValues(EState *s)
     if (s->verbosity >= 3) fprintf(stderr,
                                    "      initial group %d, [%d .. %d], has %d syms (%4.1f%%)\n",
                                    nPart,gs,ge,aFreq,
-                                   (100.0 * (double)((float)aFreq)) / (double)((float)s->nMTF)); /* fprintf_va_4 */
+                                   (100.0 * (double)((float)aFreq)) / (double)((float)s->nMTF));
     v = 0;
     while (1) {
       while_continue___3: ;
@@ -3903,16 +4443,16 @@ static void sendMTFValues(EState *s)
     while_break___9: ;
     if (s->verbosity >= 3) {
       fprintf(stderr,"      pass %d: size is %d, grp uses are ",iter + 1,
-              totc / 8); /* fprintf_va_5 */
+              totc / 8);
       t = 0;
       while (1) {
         while_continue___15: ;
         if (! (t < nGroups)) goto while_break___15;
-        fprintf(stderr,"%d ",fave[t]); /* fprintf_va_6 */
+        fprintf(stderr,"%d ",fave[t]);
         t ++;
       }
       while_break___15: ;
-      fprintf(stderr,"\n"); /* fprintf_va_7 */
+      fprintf(stderr,"\n");
     }
     t = 0;
     while (1) {
@@ -4024,7 +4564,7 @@ static void sendMTFValues(EState *s)
   }
   while_break___25: ;
   if (s->verbosity >= 3) fprintf(stderr,"      bytes: mapping %d, ",
-                                 s->numZ - nBytes); /* fprintf_va_8 */
+                                 s->numZ - nBytes);
   nBytes = s->numZ;
   bsW(s,3,(UInt32)nGroups);
   bsW(s,15,(UInt32)nSelectors);
@@ -4044,7 +4584,7 @@ static void sendMTFValues(EState *s)
     i ++;
   }
   while_break___27: ;
-  if (s->verbosity >= 3) fprintf(stderr,"selectors %d, ",s->numZ - nBytes); /* fprintf_va_9 */
+  if (s->verbosity >= 3) fprintf(stderr,"selectors %d, ",s->numZ - nBytes);
   nBytes = s->numZ;
   t = 0;
   while (1) {
@@ -4077,7 +4617,7 @@ static void sendMTFValues(EState *s)
     t ++;
   }
   while_break___29: ;
-  if (s->verbosity >= 3) fprintf(stderr,"code lengths %d, ",s->numZ - nBytes); /* fprintf_va_10 */
+  if (s->verbosity >= 3) fprintf(stderr,"code lengths %d, ",s->numZ - nBytes);
   nBytes = s->numZ;
   selCtr = 0;
   gs = 0;
@@ -4260,32 +4800,9 @@ static void sendMTFValues(EState *s)
   }
   while_break___33: ;
   if (! (selCtr == nSelectors)) BZ2_bz__AssertH__fail(3007);
-  if (s->verbosity >= 3) fprintf(stderr,"codes %d\n",s->numZ - nBytes); /* fprintf_va_11 */
+  if (s->verbosity >= 3) fprintf(stderr,"codes %d\n",s->numZ - nBytes);
   return;
 }
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: param3), (indirect: param2), (indirect: param1),
-            (indirect: param0);
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), param3, param2,
-            param1, param0;
- */
-int fprintf_va_12(FILE * restrict __stream, char const * restrict __format,
-                  int param0, unsigned int param1, unsigned int param2,
-                  int param3);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: param0);
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), param0;
- */
-int fprintf_va_13(FILE * restrict __stream, char const * restrict __format,
-                  unsigned int param0);
 
 void BZ2_compressBlock(EState *s, Bool is_last_block)
 {
@@ -4297,7 +4814,7 @@ void BZ2_compressBlock(EState *s, Bool is_last_block)
     if (s->verbosity >= 2) fprintf(stderr,
                                    "    block %d: crc = 0x%08x, combined CRC = 0x%08x, size = %d\n",
                                    s->blockNo,s->blockCRC,s->combinedCRC,
-                                   s->nblock); /* fprintf_va_12 */
+                                   s->nblock);
     BZ2_blockSort(s);
   }
   s->zbits = (UChar *)s->arr2 + s->nblock;
@@ -4331,7 +4848,7 @@ void BZ2_compressBlock(EState *s, Bool is_last_block)
     bsPutUInt32(s,s->combinedCRC);
     if (s->verbosity >= 2) fprintf(stderr,
                                    "    final combined CRC = 0x%08x\n   ",
-                                   s->combinedCRC); /* fprintf_va_13 */
+                                   s->combinedCRC);
     bsFinishWrite(s);
   }
   return;
@@ -4416,33 +4933,15 @@ void BZ2_bzWriteClose64(int *bzerror, BZFILE *b, int abandon,
 
 char const *BZ2_bzlibVersion(void);
 
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param1 + (0 ..))), (indirect: param0);
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param1 + (0 ..)),
-            param0;
- */
-int fprintf_va_14(FILE * restrict __stream, char const * restrict __format,
-                  int param0, char *param1);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..)));
-    assigns *__stream \from *__stream, (indirect: *(__format + (0 ..)));
- */
-int fprintf_va_15(FILE * restrict __stream, char const * restrict __format);
-
 void BZ2_bz__AssertH__fail(int errcode)
 {
   char const *tmp;
   tmp = BZ2_bzlibVersion();
   fprintf(stderr,
           "\n\nbzip2/libbzip2: internal error number %d.\nThis is a bug in bzip2/libbzip2, %s.\nPlease report it to me at: jseward@bzip.org.  If this happened\nwhen you were using some program which uses libbzip2 as a\ncomponent, you should also report this bug to the author(s)\nof that program.  Please make an effort to report this bug;\ntimely and accurate bug reports eventually lead to higher\nquality software.  Thanks.  Julian Seward, 10 December 2007.\n\n",
-          errcode,(char *)tmp); /* fprintf_va_14 */
+          errcode,tmp);
   if (errcode == 1007) fprintf(stderr,
-                               "\n*** A special note about internal error number 1007 ***\n\nExperience suggests that a common cause of i.e. 1007\nis unreliable memory or other hardware.  The 1007 assertion\njust happens to cross-check the results of huge numbers of\nmemory reads/writes, and so acts (unintendedly) as a stress\ntest of your memory system.\n\nI suggest the following: try compressing the file again,\npossibly monitoring progress in detail with the -vv flag.\n\n* If the error cannot be reproduced, and/or happens at different\n  points in compression, you may have a flaky memory system.\n  Try a memory-test program.  I have used Memtest86\n  (www.memtest86.com).  At the time of writing it is free (GPLd).\n  Memtest86 tests memory much more thorougly than your BIOSs\n  power-on test, and may find failures that the BIOS doesn\'t.\n\n* If the error can be repeatably reproduced, this is a bug in\n  bzip2, and I would very much like to hear about it.  Please\n  let me know, and, ideally, save a copy of the file causing the\n  problem -- without which I will be unable to investigate it.\n\n"); /* fprintf_va_15 */
+                               "\n*** A special note about internal error number 1007 ***\n\nExperience suggests that a common cause of i.e. 1007\nis unreliable memory or other hardware.  The 1007 assertion\njust happens to cross-check the results of huge numbers of\nmemory reads/writes, and so acts (unintendedly) as a stress\ntest of your memory system.\n\nI suggest the following: try compressing the file again,\npossibly monitoring progress in detail with the -vv flag.\n\n* If the error cannot be reproduced, and/or happens at different\n  points in compression, you may have a flaky memory system.\n  Try a memory-test program.  I have used Memtest86\n  (www.memtest86.com).  At the time of writing it is free (GPLd).\n  Memtest86 tests memory much more thorougly than your BIOSs\n  power-on test, and may find failures that the BIOS doesn\'t.\n\n* If the error can be repeatably reproduced, this is a bug in\n  bzip2, and I would very much like to hear about it.  Please\n  let me know, and, ideally, save a copy of the file causing the\n  problem -- without which I will be unable to investigate it.\n\n");
   exit(3);
   return;
 }
@@ -4450,36 +4949,13 @@ void BZ2_bz__AssertH__fail(int errcode)
 static int bz_config_ok(void)
 {
   int __retres;
-  if (sizeof(int) != 4UL) {
-    __retres = 0;
-    goto return_label;
-  }
-  if (sizeof(short) != 2UL) {
-    __retres = 0;
-    goto return_label;
-  }
-  if (sizeof(char) != 1UL) {
-    __retres = 0;
-    goto return_label;
-  }
   __retres = 1;
-  return_label: return __retres;
+  return __retres;
 }
 
-static void *default_bzalloc(void *opaque, Int32 items, Int32 size)
-{
-  void *v;
-  void *tmp;
-  tmp = malloc((size_t)(items * size));
-  v = tmp;
-  return v;
-}
+static void *default_bzalloc(void *opaque, Int32 items, Int32 size);
 
-static void default_bzfree(void *opaque, void *addr)
-{
-  if ((unsigned long)addr != (unsigned long)((void *)0)) free(addr);
-  return;
-}
+static void default_bzfree(void *opaque, void *addr);
 
 static void prepare_new_block(EState *s)
 {
@@ -4534,10 +5010,6 @@ int BZ2_bzCompressInit(bz_stream *strm, int blockSize100k___0,
   EState *s;
   int tmp;
   tmp = bz_config_ok();
-  if (! tmp) {
-    __retres = -9;
-    goto return_label;
-  }
   if ((unsigned long)strm == (unsigned long)((void *)0)) {
     __retres = -2;
     goto return_label;
@@ -5014,10 +5486,6 @@ int BZ2_bzDecompressInit(bz_stream *strm, int verbosity___0, int small)
   DState *s;
   int tmp;
   tmp = bz_config_ok();
-  if (! tmp) {
-    __retres = -9;
-    goto return_label;
-  }
   if ((unsigned long)strm == (unsigned long)((void *)0)) {
     __retres = -2;
     goto return_label;
@@ -5636,33 +6104,6 @@ static Bool unRLE_obuf_to_output_SMALL(DState *s)
   return_label: return __retres;
 }
 
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: param1), (indirect: param0);
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), param1, param0;
- */
-int fprintf_va_16(FILE * restrict __stream, char const * restrict __format,
-                  unsigned int param0, unsigned int param1);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..)));
-    assigns *__stream \from *__stream, (indirect: *(__format + (0 ..)));
- */
-int fprintf_va_17(FILE * restrict __stream, char const * restrict __format);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: param1), (indirect: param0);
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), param1, param0;
- */
-int fprintf_va_18(FILE * restrict __stream, char const * restrict __format,
-                  unsigned int param0, unsigned int param1);
-
 int BZ2_bzDecompress(bz_stream *strm)
 {
   int __retres;
@@ -5701,8 +6142,8 @@ int BZ2_bzDecompress(bz_stream *strm)
           s->calculatedBlockCRC = ~ s->calculatedBlockCRC;
           if (s->verbosity >= 3) fprintf(stderr," {0x%08x, 0x%08x}",
                                          s->storedBlockCRC,
-                                         s->calculatedBlockCRC); /* fprintf_va_16 */
-          if (s->verbosity >= 2) fprintf(stderr,"]"); /* fprintf_va_17 */
+                                         s->calculatedBlockCRC);
+          if (s->verbosity >= 2) fprintf(stderr,"]");
           if (s->calculatedBlockCRC != s->storedBlockCRC) {
             __retres = -4;
             goto return_label;
@@ -5728,7 +6169,7 @@ int BZ2_bzDecompress(bz_stream *strm)
         if (s->verbosity >= 3) fprintf(stderr,
                                        "\n    combined CRCs: stored = 0x%08x, computed = 0x%08x",
                                        s->storedCombinedCRC,
-                                       s->calculatedCombinedCRC); /* fprintf_va_18 */
+                                       s->calculatedCombinedCRC);
         if (s->calculatedCombinedCRC != s->storedCombinedCRC) {
           __retres = -4;
           goto return_label;
@@ -5854,13 +6295,6 @@ BZFILE *BZ2_bzWriteOpen(int *bzerror, FILE *f, int blockSize100k___0,
   if (workFactor___0 == 0) workFactor___0 = 30;
   ret = BZ2_bzCompressInit(& bzf->strm,blockSize100k___0,verbosity___0,
                            workFactor___0);
-  if (ret != 0) {
-    if ((unsigned long)bzerror != (unsigned long)((void *)0)) *bzerror = ret;
-    if ((unsigned long)bzf != (unsigned long)((void *)0)) bzf->lastErr = ret;
-    free((void *)bzf);
-    __retres = (void *)0;
-    goto return_label;
-  }
   bzf->strm.avail_in = 0U;
   bzf->initialisedOk = (Bool)1;
   __retres = (BZFILE *)bzf;
@@ -6115,13 +6549,6 @@ BZFILE *BZ2_bzReadOpen(int *bzerror, FILE *f, int verbosity___0, int small,
   }
   while_break: ;
   ret = BZ2_bzDecompressInit(& bzf->strm,verbosity___0,small);
-  if (ret != 0) {
-    if ((unsigned long)bzerror != (unsigned long)((void *)0)) *bzerror = ret;
-    if ((unsigned long)bzf != (unsigned long)((void *)0)) bzf->lastErr = ret;
-    free((void *)bzf);
-    __retres = (void *)0;
-    goto return_label;
-  }
   bzf->strm.avail_in = (unsigned int)bzf->bufN;
   bzf->strm.next_in = bzf->buf;
   bzf->initialisedOk = (Bool)1;
@@ -6177,12 +6604,6 @@ int BZ2_bzRead(int *bzerror, BZFILE *b, void *buf, int len)
   if (bzf->writing) {
     if ((unsigned long)bzerror != (unsigned long)((void *)0)) *bzerror = -1;
     if ((unsigned long)bzf != (unsigned long)((void *)0)) bzf->lastErr = -1;
-    __retres = 0;
-    goto return_label;
-  }
-  if (len == 0) {
-    if ((unsigned long)bzerror != (unsigned long)((void *)0)) *bzerror = 0;
-    if ((unsigned long)bzf != (unsigned long)((void *)0)) bzf->lastErr = 0;
     __retres = 0;
     goto return_label;
   }
@@ -6298,8 +6719,6 @@ extern  __attribute__((__nothrow__)) int ( __attribute__((__leaf__)) remove)
 
 extern void rewind(FILE *__stream);
 
-extern void perror(char const *__s);
-
 extern  __attribute__((__nothrow__)) int ( __attribute__((__leaf__)) fileno)
 (FILE *__stream);
 
@@ -6335,6 +6754,9 @@ __leaf__)) signal)(int __sig, void (*__handler)(int ));
 
 extern  __attribute__((__nothrow__)) int *( __attribute__((__leaf__)) __errno_location)
 (void) __attribute__((__const__));
+
+extern int ( __attribute__((__nonnull__(1))) open)(char const *__file,
+                                                   int __oflag , ...) __asm__("open64");
 
 extern  __attribute__((__nothrow__)) int ( __attribute__((__nonnull__(1),
                                                           __leaf__)) utime)
@@ -6522,33 +6944,6 @@ static Bool myfeof___0(FILE *f)
   return_label: return __retres;
 }
 
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..)));
-    assigns *__stream \from *__stream, (indirect: *(__format + (0 ..)));
- */
-int fprintf_va_19(FILE * restrict __stream, char const * restrict __format);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..)));
-    assigns *__stream \from *__stream, (indirect: *(__format + (0 ..)));
- */
-int fprintf_va_20(FILE * restrict __stream, char const * restrict __format);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param4 + (0 ..))), (indirect: *(param3 + (0 ..))),
-            (indirect: param2), (indirect: param1), (indirect: param0);
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param4 + (0 ..)),
-            *(param3 + (0 ..)), param2, param1, param0;
- */
-int fprintf_va_21(FILE * restrict __stream, char const * restrict __format,
-                  double param0, double param1, double param2, char *param3,
-                  char *param4);
-
 static void compressStream(FILE *stream, FILE *zStream)
 {
   BZFILE *bzf;
@@ -6589,7 +6984,7 @@ static void compressStream(FILE *stream, FILE *zStream)
   if (tmp___0) goto errhandler_io;
   bzf = BZ2_bzWriteOpen(& bzerr,zStream,blockSize100k,verbosity,workFactor);
   if (bzerr != 0) goto errhandler;
-  if (verbosity >= 2) fprintf(stderr,"\n"); /* fprintf_va_19 */
+  if (verbosity >= 2) fprintf(stderr,"\n");
   while (1) {
     while_continue: ;
     tmp___1 = myfeof___0(stream);
@@ -6628,7 +7023,7 @@ static void compressStream(FILE *stream, FILE *zStream)
   if (ret == -1) goto errhandler_io;
   if (verbosity >= 1) 
     if (nbytes_in_lo32 == 0U) {
-      if (nbytes_in_hi32 == 0U) fprintf(stderr," no data compressed.\n"); /* fprintf_va_20 */
+      if (nbytes_in_hi32 == 0U) fprintf(stderr," no data compressed.\n");
       else goto _L;
     }
     else {
@@ -6644,7 +7039,7 @@ static void compressStream(FILE *stream, FILE *zStream)
                 "%6.3f:1, %6.3f bits/byte, %5.2f%% saved, %s in, %s out.\n",
                 nbytes_in_d / nbytes_out_d,
                 (8.0 * nbytes_out_d) / nbytes_in_d,
-                100.0 * (1.0 - nbytes_out_d / nbytes_in_d),buf_nin,buf_nout); /* fprintf_va_21 */
+                100.0 * (1.0 - nbytes_out_d / nbytes_in_d),buf_nin,buf_nout);
       }
     }
   goto return_label;
@@ -6666,24 +7061,6 @@ static void compressStream(FILE *stream, FILE *zStream)
   panic("compress:end");
   return_label: return;
 }
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..)));
-    assigns *__stream \from *__stream, (indirect: *(__format + (0 ..)));
- */
-int fprintf_va_22(FILE * restrict __stream, char const * restrict __format);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param1 + (0 ..))), (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param1 + (0 ..)),
-            *(param0 + (0 ..));
- */
-int fprintf_va_23(FILE * restrict __stream, char const * restrict __format,
-                  char *param0, char *param1);
 
 static Bool uncompressStream(FILE *zStream, FILE *stream)
 {
@@ -6788,7 +7165,7 @@ static Bool uncompressStream(FILE *zStream, FILE *stream)
     if (ret == -1) goto errhandler_io;
   }
   outputHandleJustInCase = (FILE *)0;
-  if (verbosity >= 2) fprintf(stderr,"\n    "); /* fprintf_va_22 */
+  if (verbosity >= 2) fprintf(stderr,"\n    ");
   __retres = (Bool)1;
   goto return_label;
   trycat: ;
@@ -6838,7 +7215,7 @@ static Bool uncompressStream(FILE *zStream, FILE *stream)
   else {
     if (noisy) fprintf(stderr,
                        "\n%s: %s: trailing garbage after EOF ignored\n",
-                       progName,inName); /* fprintf_va_23 */
+                       progName,inName);
     __retres = (Bool)1;
     goto return_label;
   }
@@ -6848,52 +7225,6 @@ static Bool uncompressStream(FILE *zStream, FILE *stream)
   __retres = (Bool)1;
   return_label: return __retres;
 }
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..)));
-    assigns *__stream \from *__stream, (indirect: *(__format + (0 ..)));
- */
-int fprintf_va_24(FILE * restrict __stream, char const * restrict __format);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param1 + (0 ..))), (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param1 + (0 ..)),
-            *(param0 + (0 ..));
- */
-int fprintf_va_25(FILE * restrict __stream, char const * restrict __format,
-                  char *param0, char *param1);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..)));
-    assigns *__stream \from *__stream, (indirect: *(__format + (0 ..)));
- */
-int fprintf_va_26(FILE * restrict __stream, char const * restrict __format);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..)));
-    assigns *__stream \from *__stream, (indirect: *(__format + (0 ..)));
- */
-int fprintf_va_27(FILE * restrict __stream, char const * restrict __format);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..)));
-    assigns *__stream \from *__stream, (indirect: *(__format + (0 ..)));
- */
-int fprintf_va_28(FILE * restrict __stream, char const * restrict __format);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..)));
-    assigns *__stream \from *__stream, (indirect: *(__format + (0 ..)));
- */
-int fprintf_va_29(FILE * restrict __stream, char const * restrict __format);
 
 static Bool testStream(FILE *zStream)
 {
@@ -6963,11 +7294,11 @@ static Bool testStream(FILE *zStream)
   if (tmp___1) goto errhandler_io;
   ret = fclose(zStream);
   if (ret == -1) goto errhandler_io;
-  if (verbosity >= 2) fprintf(stderr,"\n    "); /* fprintf_va_24 */
+  if (verbosity >= 2) fprintf(stderr,"\n    ");
   __retres = (Bool)1;
   goto return_label;
   errhandler: BZ2_bzReadClose(& bzerr_dummy,bzf);
-  if (verbosity == 0) fprintf(stderr,"%s: %s: ",progName,inName); /* fprintf_va_25 */
+  if (verbosity == 0) fprintf(stderr,"%s: %s: ",progName,inName);
   if (bzerr == -9) goto case_neg_9;
   if (bzerr == -6) goto errhandler_io;
   if (bzerr == -4) goto case_neg_4;
@@ -6979,23 +7310,22 @@ static Bool testStream(FILE *zStream)
   goto switch_break;
   errhandler_io: ioError();
   goto switch_break;
-  case_neg_4:
-  fprintf(stderr,"data integrity (CRC) error in data\n"); /* fprintf_va_26 */
+  case_neg_4: fprintf(stderr,"data integrity (CRC) error in data\n");
   __retres = (Bool)0;
   goto return_label;
   case_neg_3: outOfMemory();
-  case_neg_7: fprintf(stderr,"file ends unexpectedly\n"); /* fprintf_va_27 */
+  case_neg_7: fprintf(stderr,"file ends unexpectedly\n");
   __retres = (Bool)0;
   goto return_label;
   case_neg_5: ;
   if ((unsigned long)zStream != (unsigned long)stdin) fclose(zStream);
   if (streamNo == 1) {
-    fprintf(stderr,"bad magic number (file not created by bzip2)\n"); /* fprintf_va_28 */
+    fprintf(stderr,"bad magic number (file not created by bzip2)\n");
     __retres = (Bool)0;
     goto return_label;
   }
   else {
-    if (noisy) fprintf(stderr,"trailing garbage after EOF ignored\n"); /* fprintf_va_29 */
+    if (noisy) fprintf(stderr,"trailing garbage after EOF ignored\n");
     __retres = (Bool)1;
     goto return_label;
   }
@@ -7012,336 +7342,21 @@ static void setExit(Int32 v)
   return;
 }
 
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..)));
-    assigns *__stream \from *__stream, (indirect: *(__format + (0 ..)));
- */
-int fprintf_va_30(FILE * restrict __stream, char const * restrict __format);
+static  __attribute__((__noreturn__)) void panic(Char const *s);
 
-static void cadvise(void)
-{
-  if (noisy) fprintf(stderr,
-                     "\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv option to test integrity of such files.\n\nYou can use the `bzip2recover\' program to attempt to recover\ndata from undamaged sections of corrupted files.\n\n"); /* fprintf_va_30 */
-  return;
-}
+static  __attribute__((__noreturn__)) void crcError(void);
 
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param1 + (0 ..))), (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param1 + (0 ..)),
-            *(param0 + (0 ..));
- */
-int fprintf_va_31(FILE * restrict __stream, char const * restrict __format,
-                  char *param0, char *param1);
+static  __attribute__((__noreturn__)) void compressedStreamEOF(void);
 
-static void showFileNames(void)
-{
-  if (noisy) fprintf(stderr,"\tInput file = %s, output file = %s\n",inName,
-                     outName); /* fprintf_va_31 */
-  return;
-}
+static  __attribute__((__noreturn__)) void ioError(void);
 
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param1 + (0 ..))), (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param1 + (0 ..)),
-            *(param0 + (0 ..));
- */
-int fprintf_va_32(FILE * restrict __stream, char const * restrict __format,
-                  char *param0, char *param1);
+static void mySignalCatcher(IntNative n);
 
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param0 + (0 ..));
- */
-int fprintf_va_33(FILE * restrict __stream, char const * restrict __format,
-                  char *param0);
+static void mySIGSEGVorSIGBUScatcher(IntNative n);
 
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param0 + (0 ..));
- */
-int fprintf_va_34(FILE * restrict __stream, char const * restrict __format,
-                  char *param0);
+static  __attribute__((__noreturn__)) void outOfMemory(void);
 
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param0 + (0 ..));
- */
-int fprintf_va_35(FILE * restrict __stream, char const * restrict __format,
-                  char *param0);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param1 + (0 ..))), (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param1 + (0 ..)),
-            *(param0 + (0 ..));
- */
-int fprintf_va_36(FILE * restrict __stream, char const * restrict __format,
-                  char *param0, char *param1);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param0 + (0 ..));
- */
-int fprintf_va_37(FILE * restrict __stream, char const * restrict __format,
-                  char *param0);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: param3), (indirect: param2),
-            (indirect: *(param1 + (0 ..))), (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), param3, param2,
-            *(param1 + (0 ..)), *(param0 + (0 ..));
- */
-int fprintf_va_38(FILE * restrict __stream, char const * restrict __format,
-                  char *param0, char *param1, int param2, int param3);
-
-static  __attribute__((__noreturn__)) void cleanUpAndFail(Int32 ec)
-{
-  IntNative retVal;
-  struct stat statBuf;
-  void *__cil_tmp4;
-  if (srcMode == 3) 
-    if (opMode != 3) 
-      if (deleteOutputOnInterrupt) {
-        retVal = stat((char const *)(inName),& statBuf);
-        if (retVal == 0) {
-          if (noisy) fprintf(stderr,
-                             "%s: Deleting output file %s, if it exists.\n",
-                             progName,outName); /* fprintf_va_32 */
-          if ((unsigned long)outputHandleJustInCase != (unsigned long)((void *)0)) 
-            fclose(outputHandleJustInCase);
-          retVal = remove((char const *)(outName));
-          if (retVal != 0) fprintf(stderr,
-                                   "%s: WARNING: deletion of output file (apparently) failed.\n",
-                                   progName); /* fprintf_va_33 */
-        }
-        else {
-          fprintf(stderr,"%s: WARNING: deletion of output file suppressed\n",
-                  progName); /* fprintf_va_34 */
-          fprintf(stderr,
-                  "%s:    since input file no longer exists.  Output file\n",
-                  progName); /* fprintf_va_35 */
-          fprintf(stderr,"%s:    `%s\' may be incomplete.\n",progName,
-                  outName); /* fprintf_va_36 */
-          fprintf(stderr,
-                  "%s:    I suggest doing an integrity test (bzip2 -tv) of it.\n",
-                  progName); /* fprintf_va_37 */
-        }
-      }
-  if (noisy) 
-    if (numFileNames > 0) 
-      if (numFilesProcessed < numFileNames) fprintf(stderr,
-                                                    "%s: WARNING: some files have not been processed:\n%s:    %d specified on command line, %d not processed yet.\n\n",
-                                                    progName,progName,
-                                                    numFileNames,
-                                                    numFileNames - numFilesProcessed); /* fprintf_va_38 */
-  setExit(ec);
-  exit(exitValue);
-  return;
-}
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param1 + (0 ..))), (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param1 + (0 ..)),
-            *(param0 + (0 ..));
- */
-int fprintf_va_39(FILE * restrict __stream, char const * restrict __format,
-                  char *param0, char *param1);
-
-static  __attribute__((__noreturn__)) void panic(Char const *s)
-{
-  fprintf(stderr,
-          "\n%s: PANIC -- internal consistency error:\n\t%s\n\tThis is a BUG.  Please report it to me at:\n\tjseward@bzip.org\n",
-          progName,(char *)s); /* fprintf_va_39 */
-  showFileNames();
-  cleanUpAndFail(3);
-  return;
-}
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param0 + (0 ..));
- */
-int fprintf_va_40(FILE * restrict __stream, char const * restrict __format,
-                  char *param0);
-
-static  __attribute__((__noreturn__)) void crcError(void)
-{
-  fprintf(stderr,"\n%s: Data integrity error when decompressing.\n",progName); /* fprintf_va_40 */
-  showFileNames();
-  cadvise();
-  cleanUpAndFail(2);
-  return;
-}
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param0 + (0 ..));
- */
-int fprintf_va_41(FILE * restrict __stream, char const * restrict __format,
-                  char *param0);
-
-static  __attribute__((__noreturn__)) void compressedStreamEOF(void)
-{
-  if (noisy) {
-    fprintf(stderr,
-            "\n%s: Compressed file ends unexpectedly;\n\tperhaps it is corrupted?  *Possible* reason follows.\n",
-            progName); /* fprintf_va_41 */
-    perror((char const *)progName);
-    showFileNames();
-    cadvise();
-  }
-  cleanUpAndFail(2);
-  return;
-}
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param0 + (0 ..));
- */
-int fprintf_va_42(FILE * restrict __stream, char const * restrict __format,
-                  char *param0);
-
-static  __attribute__((__noreturn__)) void ioError(void)
-{
-  fprintf(stderr,
-          "\n%s: I/O or other error, bailing out.  Possible reason follows.\n",
-          progName); /* fprintf_va_42 */
-  perror((char const *)progName);
-  showFileNames();
-  cleanUpAndFail(1);
-  return;
-}
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param0 + (0 ..));
- */
-int fprintf_va_43(FILE * restrict __stream, char const * restrict __format,
-                  char *param0);
-
-static void mySignalCatcher(IntNative n)
-{
-  fprintf(stderr,"\n%s: Control-C or similar caught, quitting.\n",progName); /* fprintf_va_43 */
-  cleanUpAndFail(1);
-  return;
-}
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param0 + (0 ..));
- */
-int fprintf_va_44(FILE * restrict __stream, char const * restrict __format,
-                  char *param0);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param0 + (0 ..));
- */
-int fprintf_va_45(FILE * restrict __stream, char const * restrict __format,
-                  char *param0);
-
-static void mySIGSEGVorSIGBUScatcher(IntNative n)
-{
-  if (opMode == 1) fprintf(stderr,
-                           "\n%s: Caught a SIGSEGV or SIGBUS whilst compressing.\n\n   Possible causes are (most likely first):\n   (1) This computer has unreliable memory or cache hardware\n       (a surprisingly common problem; try a different machine.)\n   (2) A bug in the compiler used to create this executable\n       (unlikely, if you didn\'t compile bzip2 yourself.)\n   (3) A real bug in bzip2 -- I hope this should never be the case.\n   The user\'s manual, Section 4.3, has more info on (1) and (2).\n   \n   If you suspect this is a bug in bzip2, or are unsure about (1)\n   or (2), feel free to report it to me at: jseward@bzip.org.\n   Section 4.3 of the user\'s manual describes the info a useful\n   bug report should have.  If the manual is available on your\n   system, please try and read it before mailing me.  If you don\'t\n   have the manual or can\'t be bothered to read it, mail me anyway.\n\n",
-                           progName); /* fprintf_va_44 */
-  else fprintf(stderr,
-               "\n%s: Caught a SIGSEGV or SIGBUS whilst decompressing.\n\n   Possible causes are (most likely first):\n   (1) The compressed data is corrupted, and bzip2\'s usual checks\n       failed to detect this.  Try bzip2 -tvv my_file.bz2.\n   (2) This computer has unreliable memory or cache hardware\n       (a surprisingly common problem; try a different machine.)\n   (3) A bug in the compiler used to create this executable\n       (unlikely, if you didn\'t compile bzip2 yourself.)\n   (4) A real bug in bzip2 -- I hope this should never be the case.\n   The user\'s manual, Section 4.3, has more info on (2) and (3).\n   \n   If you suspect this is a bug in bzip2, or are unsure about (2)\n   or (3), feel free to report it to me at: jseward@bzip.org.\n   Section 4.3 of the user\'s manual describes the info a useful\n   bug report should have.  If the manual is available on your\n   system, please try and read it before mailing me.  If you don\'t\n   have the manual or can\'t be bothered to read it, mail me anyway.\n\n",
-               progName); /* fprintf_va_45 */
-  showFileNames();
-  if (opMode == 1) cleanUpAndFail(3);
-  else {
-    cadvise();
-    cleanUpAndFail(2);
-  }
-  return;
-}
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param0 + (0 ..));
- */
-int fprintf_va_46(FILE * restrict __stream, char const * restrict __format,
-                  char *param0);
-
-static  __attribute__((__noreturn__)) void outOfMemory(void)
-{
-  fprintf(stderr,"\n%s: couldn\'t allocate enough memory\n",progName); /* fprintf_va_46 */
-  showFileNames();
-  cleanUpAndFail(1);
-  return;
-}
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..)));
-    assigns *__stream \from *__stream, (indirect: *(__format + (0 ..)));
- */
-int fprintf_va_47(FILE * restrict __stream, char const * restrict __format);
-
-static  __attribute__((__noreturn__)) void configError(void)
-{
-  fprintf(stderr,
-          "bzip2: I\'m not configured correctly for this platform!\n\tI require Int32, Int16 and Char to have sizes\n\tof 4, 2 and 1 bytes to run properly, and they don\'t.\n\tProbably you can fix this by defining them correctly,\n\tand recompiling.  Bye!\n"); /* fprintf_va_47 */
-  setExit(3);
-  exit(exitValue);
-  return;
-}
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..)));
-    assigns *__stream \from *__stream, (indirect: *(__format + (0 ..)));
- */
-int fprintf_va_48(FILE * restrict __stream, char const * restrict __format);
+static  __attribute__((__noreturn__)) void configError(void);
 
 static void pad(Char *s)
 {
@@ -7355,23 +7370,12 @@ static void pad(Char *s)
     while_continue: ;
     tmp___0 = strlen((char const *)s);
     if (! (i <= longestFileName - (Int32)tmp___0)) goto while_break;
-    fprintf(stderr," "); /* fprintf_va_48 */
+    fprintf(stderr," ");
     i ++;
   }
   while_break: ;
   return_label: return;
 }
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: param1), (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), param1,
-            *(param0 + (0 ..));
- */
-int fprintf_va_49(FILE * restrict __stream, char const * restrict __format,
-                  char *param0, int param1);
 
 static void copyFileName(Char *to, Char *from)
 {
@@ -7380,7 +7384,7 @@ static void copyFileName(Char *to, Char *from)
   if (tmp > 1024UL) {
     fprintf(stderr,
             "bzip2: file name\n`%s\'\nis suspiciously (more than %d chars) long.\nTry using a reasonable file name instead.  Sorry! :-)\n",
-            from,1024); /* fprintf_va_49 */
+            from,1024);
     setExit(1);
     exit(exitValue);
   }
@@ -7407,15 +7411,12 @@ static Bool fileExists(Char *name)
   return exists;
 }
 
-int open_fallback_1(char const *__file, int __oflag, int param0) __attribute__((
-__nonnull__(1)));
-
 static FILE *fopen_output_safely(Char *name, char const *mode)
 {
   FILE *__retres;
   FILE *fp;
   IntNative fh;
-  fh = open((char const *)name,193,384); /* open_fallback_1 */
+  fh = open((char const *)name,193,384);
   if (fh == -1) {
     __retres = (FILE *)0;
     goto return_label;
@@ -7549,174 +7550,6 @@ static Bool mapSuffix(Char *name, Char const *oldSuffix,
   return_label: return __retres;
 }
 
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param1 + (0 ..))), (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param1 + (0 ..)),
-            *(param0 + (0 ..));
- */
-int fprintf_va_50(FILE * restrict __stream, char const * restrict __format,
-                  char *param0, char *param1);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param2 + (0 ..))), (indirect: *(param1 + (0 ..))),
-            (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param2 + (0 ..)),
-            *(param1 + (0 ..)), *(param0 + (0 ..));
- */
-int fprintf_va_51(FILE * restrict __stream, char const * restrict __format,
-                  char *param0, char *param1, char *param2);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param2 + (0 ..))), (indirect: *(param1 + (0 ..))),
-            (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param2 + (0 ..)),
-            *(param1 + (0 ..)), *(param0 + (0 ..));
- */
-int fprintf_va_52(FILE * restrict __stream, char const * restrict __format,
-                  char *param0, char *param1, char *param2);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param1 + (0 ..))), (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param1 + (0 ..)),
-            *(param0 + (0 ..));
- */
-int fprintf_va_53(FILE * restrict __stream, char const * restrict __format,
-                  char *param0, char *param1);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param1 + (0 ..))), (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param1 + (0 ..)),
-            *(param0 + (0 ..));
- */
-int fprintf_va_54(FILE * restrict __stream, char const * restrict __format,
-                  char *param0, char *param1);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param1 + (0 ..))), (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param1 + (0 ..)),
-            *(param0 + (0 ..));
- */
-int fprintf_va_55(FILE * restrict __stream, char const * restrict __format,
-                  char *param0, char *param1);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param3 + (0 ..))), (indirect: param2),
-            (indirect: *(param1 + (0 ..))), (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param3 + (0 ..)),
-            param2, *(param1 + (0 ..)), *(param0 + (0 ..));
- */
-int fprintf_va_56(FILE * restrict __stream, char const * restrict __format,
-                  char *param0, char *param1, int param2, char *param3);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param0 + (0 ..));
- */
-int fprintf_va_57(FILE * restrict __stream, char const * restrict __format,
-                  char *param0);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param1 + (0 ..))), (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param1 + (0 ..)),
-            *(param0 + (0 ..));
- */
-int fprintf_va_58(FILE * restrict __stream, char const * restrict __format,
-                  char *param0, char *param1);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param0 + (0 ..));
- */
-int fprintf_va_59(FILE * restrict __stream, char const * restrict __format,
-                  char *param0);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param1 + (0 ..))), (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param1 + (0 ..)),
-            *(param0 + (0 ..));
- */
-int fprintf_va_60(FILE * restrict __stream, char const * restrict __format,
-                  char *param0, char *param1);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param2 + (0 ..))), (indirect: *(param1 + (0 ..))),
-            (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param2 + (0 ..)),
-            *(param1 + (0 ..)), *(param0 + (0 ..));
- */
-int fprintf_va_61(FILE * restrict __stream, char const * restrict __format,
-                  char *param0, char *param1, char *param2);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param2 + (0 ..))), (indirect: *(param1 + (0 ..))),
-            (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param2 + (0 ..)),
-            *(param1 + (0 ..)), *(param0 + (0 ..));
- */
-int fprintf_va_62(FILE * restrict __stream, char const * restrict __format,
-                  char *param0, char *param1, char *param2);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param2 + (0 ..))), (indirect: *(param1 + (0 ..))),
-            (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param2 + (0 ..)),
-            *(param1 + (0 ..)), *(param0 + (0 ..));
- */
-int fprintf_va_63(FILE * restrict __stream, char const * restrict __format,
-                  char *param0, char *param1, char *param2);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param0 + (0 ..));
- */
-int fprintf_va_64(FILE * restrict __stream, char const * restrict __format,
-                  char *param0);
-
 static void compress(Char *name)
 {
   FILE *inStr;
@@ -7796,7 +7629,7 @@ static void compress(Char *name)
       tmp___0 = __errno_location();
       tmp___1 = strerror(*tmp___0);
       fprintf(stderr,"%s: Can\'t open input file %s: %s.\n",progName,inName,
-              tmp___1); /* fprintf_va_51 */
+              tmp___1);
       setExit(1);
       goto return_label;
     }
@@ -7808,7 +7641,7 @@ static void compress(Char *name)
     tmp___3 = hasSuffix(inName,zSuffix[i]);
     if (tmp___3) {
       if (noisy) fprintf(stderr,"%s: Input file %s already has %s suffix.\n",
-                         progName,inName,(char *)zSuffix[i]); /* fprintf_va_52 */
+                         progName,inName,zSuffix[i]);
       setExit(1);
       goto return_label;
     }
@@ -7820,7 +7653,7 @@ static void compress(Char *name)
     if (srcMode == 2) {
       _L: stat((char const *)(inName),& statBuf);
       if ((statBuf.st_mode & 61440U) == 16384U) {
-        fprintf(stderr,"%s: Input file %s is a directory.\n",progName,inName); /* fprintf_va_53 */
+        fprintf(stderr,"%s: Input file %s is a directory.\n",progName,inName);
         setExit(1);
         goto return_label;
       }
@@ -7831,7 +7664,7 @@ static void compress(Char *name)
       if (tmp___4) {
         if (noisy) fprintf(stderr,
                            "%s: Input file %s is not a normal file.\n",
-                           progName,inName); /* fprintf_va_54 */
+                           progName,inName);
         setExit(1);
         goto return_label;
       }
@@ -7842,7 +7675,7 @@ static void compress(Char *name)
       if (forceOverwrite) remove((char const *)(outName));
       else {
         fprintf(stderr,"%s: Output file %s already exists.\n",progName,
-                outName); /* fprintf_va_55 */
+                outName);
         setExit(1);
         goto return_label;
       }
@@ -7853,7 +7686,7 @@ static void compress(Char *name)
       if (n > 0) {
         if (n > 1) tmp___6 = "s"; else tmp___6 = "";
         fprintf(stderr,"%s: Input file %s has %d other link%s.\n",progName,
-                inName,n,(char *)tmp___6); /* fprintf_va_56 */
+                inName,n,tmp___6);
         setExit(1);
         goto return_label;
       }
@@ -7872,8 +7705,8 @@ static void compress(Char *name)
   }
   if (tmp___8) {
     fprintf(stderr,"%s: I won\'t write compressed data to a terminal.\n",
-            progName); /* fprintf_va_57 */
-    fprintf(stderr,"%s: For help, type: `%s --help\'.\n",progName,progName); /* fprintf_va_58 */
+            progName);
+    fprintf(stderr,"%s: For help, type: `%s --help\'.\n",progName,progName);
     setExit(1);
     goto return_label;
   }
@@ -7889,8 +7722,8 @@ static void compress(Char *name)
   }
   if (tmp___10) {
     fprintf(stderr,"%s: I won\'t write compressed data to a terminal.\n",
-            progName); /* fprintf_va_59 */
-    fprintf(stderr,"%s: For help, type: `%s --help\'.\n",progName,progName); /* fprintf_va_60 */
+            progName);
+    fprintf(stderr,"%s: For help, type: `%s --help\'.\n",progName,progName);
     if ((unsigned long)inStr != (unsigned long)((void *)0)) fclose(inStr);
     setExit(1);
     goto return_label;
@@ -7899,7 +7732,7 @@ static void compress(Char *name)
     tmp___11 = __errno_location();
     tmp___12 = strerror(*tmp___11);
     fprintf(stderr,"%s: Can\'t open input file %s: %s.\n",progName,inName,
-            tmp___12); /* fprintf_va_61 */
+            tmp___12);
     setExit(1);
     goto return_label;
   }
@@ -7915,7 +7748,7 @@ static void compress(Char *name)
     tmp___13 = __errno_location();
     tmp___14 = strerror(*tmp___13);
     fprintf(stderr,"%s: Can\'t create output file %s: %s.\n",progName,
-            outName,tmp___14); /* fprintf_va_62 */
+            outName,tmp___14);
     if ((unsigned long)inStr != (unsigned long)((void *)0)) fclose(inStr);
     setExit(1);
     goto return_label;
@@ -7924,7 +7757,7 @@ static void compress(Char *name)
     tmp___15 = __errno_location();
     tmp___16 = strerror(*tmp___15);
     fprintf(stderr,"%s: Can\'t open input file %s: %s.\n",progName,inName,
-            tmp___16); /* fprintf_va_63 */
+            tmp___16);
     if ((unsigned long)outStr != (unsigned long)((void *)0)) fclose(outStr);
     setExit(1);
     goto return_label;
@@ -7934,7 +7767,7 @@ static void compress(Char *name)
   goto switch_break___0;
   switch_break___0: ;
   if (verbosity >= 1) {
-    fprintf(stderr,"  %s: ",inName); /* fprintf_va_64 */
+    fprintf(stderr,"  %s: ",inName);
     pad(inName);
     fflush(stderr);
   }
@@ -7954,178 +7787,6 @@ static void compress(Char *name)
   deleteOutputOnInterrupt = (Bool)0;
   return_label: return;
 }
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param1 + (0 ..))), (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param1 + (0 ..)),
-            *(param0 + (0 ..));
- */
-int fprintf_va_65(FILE * restrict __stream, char const * restrict __format,
-                  char *param0, char *param1);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param2 + (0 ..))), (indirect: *(param1 + (0 ..))),
-            (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param2 + (0 ..)),
-            *(param1 + (0 ..)), *(param0 + (0 ..));
- */
-int fprintf_va_66(FILE * restrict __stream, char const * restrict __format,
-                  char *param0, char *param1, char *param2);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param1 + (0 ..))), (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param1 + (0 ..)),
-            *(param0 + (0 ..));
- */
-int fprintf_va_67(FILE * restrict __stream, char const * restrict __format,
-                  char *param0, char *param1);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param1 + (0 ..))), (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param1 + (0 ..)),
-            *(param0 + (0 ..));
- */
-int fprintf_va_68(FILE * restrict __stream, char const * restrict __format,
-                  char *param0, char *param1);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param2 + (0 ..))), (indirect: *(param1 + (0 ..))),
-            (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param2 + (0 ..)),
-            *(param1 + (0 ..)), *(param0 + (0 ..));
- */
-int fprintf_va_69(FILE * restrict __stream, char const * restrict __format,
-                  char *param0, char *param1, char *param2);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param1 + (0 ..))), (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param1 + (0 ..)),
-            *(param0 + (0 ..));
- */
-int fprintf_va_70(FILE * restrict __stream, char const * restrict __format,
-                  char *param0, char *param1);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param3 + (0 ..))), (indirect: param2),
-            (indirect: *(param1 + (0 ..))), (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param3 + (0 ..)),
-            param2, *(param1 + (0 ..)), *(param0 + (0 ..));
- */
-int fprintf_va_71(FILE * restrict __stream, char const * restrict __format,
-                  char *param0, char *param1, int param2, char *param3);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param0 + (0 ..));
- */
-int fprintf_va_72(FILE * restrict __stream, char const * restrict __format,
-                  char *param0);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param1 + (0 ..))), (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param1 + (0 ..)),
-            *(param0 + (0 ..));
- */
-int fprintf_va_73(FILE * restrict __stream, char const * restrict __format,
-                  char *param0, char *param1);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param2 + (0 ..))), (indirect: *(param1 + (0 ..))),
-            (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param2 + (0 ..)),
-            *(param1 + (0 ..)), *(param0 + (0 ..));
- */
-int fprintf_va_74(FILE * restrict __stream, char const * restrict __format,
-                  char *param0, char *param1, char *param2);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param2 + (0 ..))), (indirect: *(param1 + (0 ..))),
-            (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param2 + (0 ..)),
-            *(param1 + (0 ..)), *(param0 + (0 ..));
- */
-int fprintf_va_75(FILE * restrict __stream, char const * restrict __format,
-                  char *param0, char *param1, char *param2);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param2 + (0 ..))), (indirect: *(param1 + (0 ..))),
-            (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param2 + (0 ..)),
-            *(param1 + (0 ..)), *(param0 + (0 ..));
- */
-int fprintf_va_76(FILE * restrict __stream, char const * restrict __format,
-                  char *param0, char *param1, char *param2);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param0 + (0 ..));
- */
-int fprintf_va_77(FILE * restrict __stream, char const * restrict __format,
-                  char *param0);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..)));
-    assigns *__stream \from *__stream, (indirect: *(__format + (0 ..)));
- */
-int fprintf_va_78(FILE * restrict __stream, char const * restrict __format);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..)));
-    assigns *__stream \from *__stream, (indirect: *(__format + (0 ..)));
- */
-int fprintf_va_79(FILE * restrict __stream, char const * restrict __format);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param1 + (0 ..))), (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param1 + (0 ..)),
-            *(param0 + (0 ..));
- */
-int fprintf_va_80(FILE * restrict __stream, char const * restrict __format,
-                  char *param0, char *param1);
 
 static void uncompress(Char *name)
 {
@@ -8219,7 +7880,7 @@ static void uncompress(Char *name)
       tmp___1 = __errno_location();
       tmp___2 = strerror(*tmp___1);
       fprintf(stderr,"%s: Can\'t open input file %s: %s.\n",progName,inName,
-              tmp___2); /* fprintf_va_66 */
+              tmp___2);
       setExit(1);
       goto return_label;
     }
@@ -8229,7 +7890,7 @@ static void uncompress(Char *name)
     if (srcMode == 2) {
       _L: stat((char const *)(inName),& statBuf);
       if ((statBuf.st_mode & 61440U) == 16384U) {
-        fprintf(stderr,"%s: Input file %s is a directory.\n",progName,inName); /* fprintf_va_67 */
+        fprintf(stderr,"%s: Input file %s is a directory.\n",progName,inName);
         setExit(1);
         goto return_label;
       }
@@ -8240,7 +7901,7 @@ static void uncompress(Char *name)
       if (tmp___4) {
         if (noisy) fprintf(stderr,
                            "%s: Input file %s is not a normal file.\n",
-                           progName,inName); /* fprintf_va_68 */
+                           progName,inName);
         setExit(1);
         goto return_label;
       }
@@ -8248,14 +7909,14 @@ static void uncompress(Char *name)
   if (cantGuess) 
     if (noisy) fprintf(stderr,
                        "%s: Can\'t guess original name for %s -- using %s\n",
-                       progName,inName,outName); /* fprintf_va_69 */
+                       progName,inName,outName);
   if (srcMode == 3) {
     tmp___5 = fileExists(outName);
     if (tmp___5) 
       if (forceOverwrite) remove((char const *)(outName));
       else {
         fprintf(stderr,"%s: Output file %s already exists.\n",progName,
-                outName); /* fprintf_va_70 */
+                outName);
         setExit(1);
         goto return_label;
       }
@@ -8266,7 +7927,7 @@ static void uncompress(Char *name)
       if (n > 0) {
         if (n > 1) tmp___6 = "s"; else tmp___6 = "";
         fprintf(stderr,"%s: Input file %s has %d other link%s.\n",progName,
-                inName,n,(char *)tmp___6); /* fprintf_va_71 */
+                inName,n,tmp___6);
         setExit(1);
         goto return_label;
       }
@@ -8285,8 +7946,8 @@ static void uncompress(Char *name)
   }
   if (tmp___8) {
     fprintf(stderr,"%s: I won\'t read compressed data from a terminal.\n",
-            progName); /* fprintf_va_72 */
-    fprintf(stderr,"%s: For help, type: `%s --help\'.\n",progName,progName); /* fprintf_va_73 */
+            progName);
+    fprintf(stderr,"%s: For help, type: `%s --help\'.\n",progName,progName);
     setExit(1);
     goto return_label;
   }
@@ -8302,7 +7963,7 @@ static void uncompress(Char *name)
     tmp___9 = __errno_location();
     tmp___10 = strerror(*tmp___9);
     fprintf(stderr,"%s: Can\'t open input file %s:%s.\n",progName,inName,
-            tmp___10); /* fprintf_va_74 */
+            tmp___10);
     if ((unsigned long)inStr != (unsigned long)((void *)0)) fclose(inStr);
     setExit(1);
     goto return_label;
@@ -8319,7 +7980,7 @@ static void uncompress(Char *name)
     tmp___11 = __errno_location();
     tmp___12 = strerror(*tmp___11);
     fprintf(stderr,"%s: Can\'t create output file %s: %s.\n",progName,
-            outName,tmp___12); /* fprintf_va_75 */
+            outName,tmp___12);
     if ((unsigned long)inStr != (unsigned long)((void *)0)) fclose(inStr);
     setExit(1);
     goto return_label;
@@ -8328,7 +7989,7 @@ static void uncompress(Char *name)
     tmp___13 = __errno_location();
     tmp___14 = strerror(*tmp___13);
     fprintf(stderr,"%s: Can\'t open input file %s: %s.\n",progName,inName,
-            tmp___14); /* fprintf_va_76 */
+            tmp___14);
     if ((unsigned long)outStr != (unsigned long)((void *)0)) fclose(outStr);
     setExit(1);
     goto return_label;
@@ -8338,7 +7999,7 @@ static void uncompress(Char *name)
   goto switch_break___0;
   switch_break___0: ;
   if (verbosity >= 1) {
-    fprintf(stderr,"  %s: ",inName); /* fprintf_va_77 */
+    fprintf(stderr,"  %s: ",inName);
     pad(inName);
     fflush(stderr);
   }
@@ -8368,99 +8029,15 @@ static void uncompress(Char *name)
   }
   deleteOutputOnInterrupt = (Bool)0;
   if (magicNumberOK) {
-    if (verbosity >= 1) fprintf(stderr,"done\n"); /* fprintf_va_78 */
+    if (verbosity >= 1) fprintf(stderr,"done\n");
   }
   else {
     setExit(2);
-    if (verbosity >= 1) fprintf(stderr,"not a bzip2 file.\n"); /* fprintf_va_79 */
-    else fprintf(stderr,"%s: %s is not a bzip2 file.\n",progName,inName); /* fprintf_va_80 */
+    if (verbosity >= 1) fprintf(stderr,"not a bzip2 file.\n");
+    else fprintf(stderr,"%s: %s is not a bzip2 file.\n",progName,inName);
   }
   return_label: return;
 }
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param1 + (0 ..))), (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param1 + (0 ..)),
-            *(param0 + (0 ..));
- */
-int fprintf_va_81(FILE * restrict __stream, char const * restrict __format,
-                  char *param0, char *param1);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param2 + (0 ..))), (indirect: *(param1 + (0 ..))),
-            (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param2 + (0 ..)),
-            *(param1 + (0 ..)), *(param0 + (0 ..));
- */
-int fprintf_va_82(FILE * restrict __stream, char const * restrict __format,
-                  char *param0, char *param1, char *param2);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param1 + (0 ..))), (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param1 + (0 ..)),
-            *(param0 + (0 ..));
- */
-int fprintf_va_83(FILE * restrict __stream, char const * restrict __format,
-                  char *param0, char *param1);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param0 + (0 ..));
- */
-int fprintf_va_84(FILE * restrict __stream, char const * restrict __format,
-                  char *param0);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param1 + (0 ..))), (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param1 + (0 ..)),
-            *(param0 + (0 ..));
- */
-int fprintf_va_85(FILE * restrict __stream, char const * restrict __format,
-                  char *param0, char *param1);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param2 + (0 ..))), (indirect: *(param1 + (0 ..))),
-            (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param2 + (0 ..)),
-            *(param1 + (0 ..)), *(param0 + (0 ..));
- */
-int fprintf_va_86(FILE * restrict __stream, char const * restrict __format,
-                  char *param0, char *param1, char *param2);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param0 + (0 ..));
- */
-int fprintf_va_87(FILE * restrict __stream, char const * restrict __format,
-                  char *param0);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..)));
-    assigns *__stream \from *__stream, (indirect: *(__format + (0 ..)));
- */
-int fprintf_va_88(FILE * restrict __stream, char const * restrict __format);
 
 static void testf(Char *name)
 {
@@ -8510,7 +8087,7 @@ static void testf(Char *name)
       tmp___0 = __errno_location();
       tmp___1 = strerror(*tmp___0);
       fprintf(stderr,"%s: Can\'t open input %s: %s.\n",progName,inName,
-              tmp___1); /* fprintf_va_82 */
+              tmp___1);
       setExit(1);
       goto return_label;
     }
@@ -8518,7 +8095,7 @@ static void testf(Char *name)
   if (srcMode != 1) {
     stat((char const *)(inName),& statBuf);
     if ((statBuf.st_mode & 61440U) == 16384U) {
-      fprintf(stderr,"%s: Input file %s is a directory.\n",progName,inName); /* fprintf_va_83 */
+      fprintf(stderr,"%s: Input file %s is a directory.\n",progName,inName);
       setExit(1);
       goto return_label;
     }
@@ -8533,8 +8110,8 @@ static void testf(Char *name)
               }
   if (tmp___4) {
     fprintf(stderr,"%s: I won\'t read compressed data from a terminal.\n",
-            progName); /* fprintf_va_84 */
-    fprintf(stderr,"%s: For help, type: `%s --help\'.\n",progName,progName); /* fprintf_va_85 */
+            progName);
+    fprintf(stderr,"%s: For help, type: `%s --help\'.\n",progName,progName);
     setExit(1);
     goto return_label;
   }
@@ -8550,36 +8127,25 @@ static void testf(Char *name)
     tmp___5 = __errno_location();
     tmp___6 = strerror(*tmp___5);
     fprintf(stderr,"%s: Can\'t open input file %s:%s.\n",progName,inName,
-            tmp___6); /* fprintf_va_86 */
+            tmp___6);
     setExit(1);
     goto return_label;
   }
   goto switch_break___0;
   switch_default: panic("testf: bad srcMode");
-  goto switch_break___0;
   switch_break___0: ;
   if (verbosity >= 1) {
-    fprintf(stderr,"  %s: ",inName); /* fprintf_va_87 */
+    fprintf(stderr,"  %s: ",inName);
     pad(inName);
     fflush(stderr);
   }
   outputHandleJustInCase = (FILE *)0;
   allOK = testStream(inStr);
   if (allOK) 
-    if (verbosity >= 1) fprintf(stderr,"ok\n"); /* fprintf_va_88 */
+    if (verbosity >= 1) fprintf(stderr,"ok\n");
   if (! allOK) testFailsExist = (Bool)1;
   return_label: return;
 }
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param0 + (0 ..));
- */
-int fprintf_va_89(FILE * restrict __stream, char const * restrict __format,
-                  char *param0);
 
 static void license(void)
 {
@@ -8587,20 +8153,9 @@ static void license(void)
   tmp = BZ2_bzlibVersion();
   fprintf(stderr,
           "bzip2, a block-sorting file compressor.  Version %s.\n   \n   Copyright (C) 1996-2007 by Julian Seward.\n   \n   This program is free software; you can redistribute it and/or modify\n   it under the terms set out in the LICENSE file, which is included\n   in the bzip2-1.0.5 source distribution.\n   \n   This program is distributed in the hope that it will be useful,\n   but WITHOUT ANY WARRANTY; without even the implied warranty of\n   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n   LICENSE file for more details.\n   \n",
-          (char *)tmp); /* fprintf_va_89 */
+          tmp);
   return;
 }
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param1 + (0 ..))), (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param1 + (0 ..)),
-            *(param0 + (0 ..));
- */
-int fprintf_va_90(FILE * restrict __stream, char const * restrict __format,
-                  char *param0, char *param1);
 
 static void usage(Char *fullProgName)
 {
@@ -8608,25 +8163,14 @@ static void usage(Char *fullProgName)
   tmp = BZ2_bzlibVersion();
   fprintf(stderr,
           "bzip2, a block-sorting file compressor.  Version %s.\n\n   usage: %s [flags and input files in any order]\n\n   -h --help           print this message\n   -d --decompress     force decompression\n   -z --compress       force compression\n   -k --keep           keep (don\'t delete) input files\n   -f --force          overwrite existing output files\n   -t --test           test compressed file integrity\n   -c --stdout         output to standard out\n   -q --quiet          suppress noncritical error messages\n   -v --verbose        be verbose (a 2nd -v gives more)\n   -L --license        display software version & license\n   -V --version        display software version & license\n   -s --small          use less memory (at most 2500k)\n   -1 .. -9            set block size to 100k .. 900k\n   --fast              alias for -1\n   --best              alias for -9\n\n   If invoked as `bzip2\', default action is to compress.\n              as `bunzip2\',  default action is to decompress.\n              as `bzcat\', default action is to decompress to stdout.\n\n   If no file names are given, bzip2 compresses or decompresses\n   from standard input to standard output.  You can combine\n   short flags, so `-v -4\' means the same as -v4 or -4v, &c.\n\n",
-          (char *)tmp,fullProgName); /* fprintf_va_90 */
+          tmp,fullProgName);
   return;
 }
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param1 + (0 ..))), (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param1 + (0 ..)),
-            *(param0 + (0 ..));
- */
-int fprintf_va_91(FILE * restrict __stream, char const * restrict __format,
-                  char *param0, char *param1);
 
 static void redundant(Char *flag)
 {
   fprintf(stderr,"%s: %s is redundant in versions 0.9.5 and above\n",
-          progName,flag); /* fprintf_va_91 */
+          progName,flag);
   return;
 }
 
@@ -8734,45 +8278,6 @@ static void addFlagsFromEnvVar(Cell **argList, Char *varName)
   return;
 }
 
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param1 + (0 ..))), (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param1 + (0 ..)),
-            *(param0 + (0 ..));
- */
-int fprintf_va_92(FILE * restrict __stream, char const * restrict __format,
-                  char *param0, char *param1);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param1 + (0 ..))), (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param1 + (0 ..)),
-            *(param0 + (0 ..));
- */
-int fprintf_va_93(FILE * restrict __stream, char const * restrict __format,
-                  char *param0, char *param1);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: *(param0 + (0 ..)));
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), *(param0 + (0 ..));
- */
-int fprintf_va_94(FILE * restrict __stream, char const * restrict __format,
-                  char *param0);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..)));
-    assigns *__stream \from *__stream, (indirect: *(__format + (0 ..)));
- */
-int fprintf_va_95(FILE * restrict __stream, char const * restrict __format);
-
 IntNative main(IntNative argc, Char **argv)
 {
   Int32 i;
@@ -8817,17 +8322,6 @@ IntNative main(IntNative argc, Char **argv)
   char *__cil_tmp43;
   char *__cil_tmp44;
   char *__cil_tmp45;
-  if (sizeof(Int32) != 4UL) configError();
-  else 
-    if (sizeof(UInt32) != 4UL) configError();
-    else 
-      if (sizeof(Int16) != 2UL) configError();
-      else 
-        if (sizeof(UInt16) != 2UL) configError();
-        else 
-          if (sizeof(Char) != 1UL) configError();
-          else 
-            if (sizeof(UChar) != 1UL) configError();
   outputHandleJustInCase = (FILE *)0;
   smallMode = (Bool)0;
   keepInputFiles = (Bool)0;
@@ -8997,7 +8491,7 @@ IntNative main(IntNative argc, Char **argv)
           goto switch_break;
           switch_default:
           {
-            fprintf(stderr,"%s: Bad flag `%s\'\n",progName,aa->name); /* fprintf_va_92 */
+            fprintf(stderr,"%s: Bad flag `%s\'\n",progName,aa->name);
             usage(progName);
             exit(1);
           }
@@ -9082,7 +8576,7 @@ IntNative main(IntNative argc, Char **argv)
                                       if (tmp___11 == 0) {
                                         fprintf(stderr,
                                                 "%s: Bad flag `%s\'\n",
-                                                progName,aa->name); /* fprintf_va_93 */
+                                                progName,aa->name);
                                         usage(progName);
                                         exit(1);
                                       }
@@ -9112,7 +8606,7 @@ IntNative main(IntNative argc, Char **argv)
       if (blockSize100k > 2) blockSize100k = 2;
   if (opMode == 3) 
     if (srcMode == 2) {
-      fprintf(stderr,"%s: -c and -t cannot be used together.\n",progName); /* fprintf_va_94 */
+      fprintf(stderr,"%s: -c and -t cannot be used together.\n",progName);
       exit(1);
     }
   if (srcMode == 2) 
@@ -9197,7 +8691,7 @@ IntNative main(IntNative argc, Char **argv)
       if (testFailsExist) 
         if (noisy) {
           fprintf(stderr,
-                  "\nYou can use the `bzip2recover\' program to attempt to recover\ndata from undamaged sections of corrupted files.\n\n"); /* fprintf_va_95 */
+                  "\nYou can use the `bzip2recover\' program to attempt to recover\ndata from undamaged sections of corrupted files.\n\n");
           setExit(2);
           exit(exitValue);
         }
@@ -9422,40 +8916,6 @@ static void fallbackQSort3(UInt32 *fmap, UInt32 *eclass, Int32 loSt,
   return;
 }
 
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..)));
-    assigns *__stream \from *__stream, (indirect: *(__format + (0 ..)));
- */
-int fprintf_va_96(FILE * restrict __stream, char const * restrict __format);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: param0);
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), param0;
- */
-int fprintf_va_97(FILE * restrict __stream, char const * restrict __format,
-                  int param0);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: param0);
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), param0;
- */
-int fprintf_va_98(FILE * restrict __stream, char const * restrict __format,
-                  int param0);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..)));
-    assigns *__stream \from *__stream, (indirect: *(__format + (0 ..)));
- */
-int fprintf_va_99(FILE * restrict __stream, char const * restrict __format);
-
 static void fallbackSort(UInt32 *fmap, UInt32 *eclass, UInt32 *bhtab,
                          Int32 nblock, Int32 verb)
 {
@@ -9475,7 +8935,7 @@ static void fallbackSort(UInt32 *fmap, UInt32 *eclass, UInt32 *bhtab,
   void *__cil_tmp19;
   void *__cil_tmp20;
   eclass8 = (UChar *)eclass;
-  if (verb >= 4) fprintf(stderr,"        bucket sorting ...\n"); /* fprintf_va_96 */
+  if (verb >= 4) fprintf(stderr,"        bucket sorting ...\n");
   i = 0;
   while (1) {
     while_continue: ;
@@ -9551,7 +9011,7 @@ static void fallbackSort(UInt32 *fmap, UInt32 *eclass, UInt32 *bhtab,
   H = 1;
   while (1) {
     while_continue___7: ;
-    if (verb >= 4) fprintf(stderr,"        depth %6d has ",H); /* fprintf_va_97 */
+    if (verb >= 4) fprintf(stderr,"        depth %6d has ",H);
     j = 0;
     i = 0;
     while (1) {
@@ -9640,14 +9100,14 @@ static void fallbackSort(UInt32 *fmap, UInt32 *eclass, UInt32 *bhtab,
       }
     }
     while_break___9: ;
-    if (verb >= 4) fprintf(stderr,"%6d unresolved strings\n",nNotDone); /* fprintf_va_98 */
+    if (verb >= 4) fprintf(stderr,"%6d unresolved strings\n",nNotDone);
     H *= 2;
     if (H > nblock) goto while_break___7;
     else 
       if (nNotDone == 0) goto while_break___7;
   }
   while_break___7: ;
-  if (verb >= 4) fprintf(stderr,"        reconstructing block ...\n"); /* fprintf_va_99 */
+  if (verb >= 4) fprintf(stderr,"        reconstructing block ...\n");
   j = 0;
   i = 0;
   while (1) {
@@ -10225,44 +9685,6 @@ static void mainQSort3(UInt32 *ptr, UChar *block, UInt16 *quadrant,
   return_label: return;
 }
 
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..)));
-    assigns *__stream \from *__stream, (indirect: *(__format + (0 ..)));
- */
-int fprintf_va_100(FILE * restrict __stream, char const * restrict __format);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..)));
-    assigns *__stream \from *__stream, (indirect: *(__format + (0 ..)));
- */
-int fprintf_va_101(FILE * restrict __stream, char const * restrict __format);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: param3), (indirect: param2), (indirect: param1),
-            (indirect: param0);
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), param3, param2,
-            param1, param0;
- */
-int fprintf_va_102(FILE * restrict __stream, char const * restrict __format,
-                   unsigned int param0, unsigned int param1, int param2,
-                   int param3);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: param2), (indirect: param1), (indirect: param0);
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), param2, param1,
-            param0;
- */
-int fprintf_va_103(FILE * restrict __stream, char const * restrict __format,
-                   int param0, int param1, int param2);
-
 static void mainSort(UInt32 *ptr, UChar *block, UInt16 *quadrant,
                      UInt32 *ftab, Int32 nblock, Int32 verb, Int32 *budget)
 {
@@ -10293,7 +9715,7 @@ static void mainSort(UInt32 *ptr, UChar *block, UInt16 *quadrant,
   void *__cil_tmp32;
   void *__cil_tmp33;
   void *__cil_tmp34;
-  if (verb >= 4) fprintf(stderr,"        main sort initialise ...\n"); /* fprintf_va_100 */
+  if (verb >= 4) fprintf(stderr,"        main sort initialise ...\n");
   i = 65536;
   while (1) {
     while_continue: ;
@@ -10340,7 +9762,7 @@ static void mainSort(UInt32 *ptr, UChar *block, UInt16 *quadrant,
     i ++;
   }
   while_break___2: ;
-  if (verb >= 4) fprintf(stderr,"        bucket sorting ...\n"); /* fprintf_va_101 */
+  if (verb >= 4) fprintf(stderr,"        bucket sorting ...\n");
   i = 1;
   while (1) {
     while_continue___3: ;
@@ -10444,8 +9866,7 @@ static void mainSort(UInt32 *ptr, UChar *block, UInt16 *quadrant,
           if (hi > lo) {
             if (verb >= 4) fprintf(stderr,
                                    "        qsort [0x%x, 0x%x]   done %d   this %d\n",
-                                   (unsigned int)ss,(unsigned int)j,
-                                   numQSorted,(hi - lo) + 1); /* fprintf_va_102 */
+                                   ss,j,numQSorted,(hi - lo) + 1);
             mainQSort3(ptr,block,quadrant,nblock,lo,hi,2,budget);
             numQSorted += (hi - lo) + 1;
             if (*budget < 0) goto return_label;
@@ -10541,27 +9962,9 @@ static void mainSort(UInt32 *ptr, UChar *block, UInt16 *quadrant,
   while_break___11: ;
   if (verb >= 4) fprintf(stderr,
                          "        %d pointers, %d sorted, %d scanned\n",
-                         nblock,numQSorted,nblock - numQSorted); /* fprintf_va_103 */
+                         nblock,numQSorted,nblock - numQSorted);
   return_label: return;
 }
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..))),
-            (indirect: param2), (indirect: param1), (indirect: param0);
-    assigns *__stream
-      \from *__stream, (indirect: *(__format + (0 ..))), param2, param1,
-            param0;
- */
-int fprintf_va_104(FILE * restrict __stream, char const * restrict __format,
-                   int param0, int param1, double param2);
-
-/*@ assigns \result, *__stream;
-    assigns \result
-      \from (indirect: *__stream), (indirect: *(__format + (0 ..)));
-    assigns *__stream \from *__stream, (indirect: *(__format + (0 ..)));
- */
-int fprintf_va_105(FILE * restrict __stream, char const * restrict __format);
 
 void BZ2_blockSort(EState *s)
 {
@@ -10596,11 +9999,11 @@ void BZ2_blockSort(EState *s)
       if (nblock == 0) tmp = 1; else tmp = nblock;
       fprintf(stderr,"      %d work, %d block, ratio %5.2f\n",
               budgetInit - budget,nblock,
-              (double)((float)(budgetInit - budget) / (float)tmp)); /* fprintf_va_104 */
+              (double)((float)(budgetInit - budget) / (float)tmp));
     }
     if (budget < 0) {
       if (verb >= 2) fprintf(stderr,
-                             "    too repetitive; using fallback sorting algorithm\n"); /* fprintf_va_105 */
+                             "    too repetitive; using fallback sorting algorithm\n");
       fallbackSort(s->arr1,s->arr2,ftab,nblock,verb);
     }
   }
