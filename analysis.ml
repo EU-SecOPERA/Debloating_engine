@@ -540,11 +540,7 @@ let cleanup_fundec f =
           cleanup_block b1;
           cleanup_block b2;
           if b1.bstmts = [] && b2.bstmts = [] then preserve_labels s
-          else begin
-            if b1.bstmts = [] then begin s.skind <- Block b2; Some s end
-            else if b2.bstmts = [] then begin s.skind <- Block b1; Some s end
-            else Some s
-          end
+          else Some s
       | Loop(_,b,_,_,_) -> cleanup_block b; Some s
       | _ -> Some s
   and cleanup_block b = b.bstmts <- List.filter_map aux b.bstmts
