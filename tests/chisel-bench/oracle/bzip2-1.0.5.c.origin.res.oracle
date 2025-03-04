@@ -5402,51 +5402,17 @@ int BZ2_bzCompress(bz_stream *strm, int action)
       goto return_label;
     }
     else 
-      if (action == 1) {
-        s->avail_in_expect = strm->avail_in;
-        s->mode = 3;
-        goto preswitch;
-      }
-      else 
+      if (! (action == 1)) 
         if (action == 2) {
           s->avail_in_expect = strm->avail_in;
           s->mode = 4;
           goto preswitch;
-        }
-        else {
-          __retres = -2;
-          goto return_label;
         }
     case_3: ;
     if (action != 1) {
       __retres = -1;
       goto return_label;
     }
-    if (s->avail_in_expect != (s->strm)->avail_in) {
-      __retres = -1;
-      goto return_label;
-    }
-    progress = handle_compress(strm);
-    if (s->avail_in_expect > 0U) {
-      __retres = 2;
-      goto return_label;
-    }
-    else {
-      tmp___0 = isempty_RL(s);
-      if (tmp___0) {
-        if (s->state_out_pos < s->numZ) {
-          __retres = 2;
-          goto return_label;
-        }
-      }
-      else {
-        __retres = 2;
-        goto return_label;
-      }
-    }
-    s->mode = 2;
-    __retres = 1;
-    goto return_label;
     case_4: ;
     if (action != 2) {
       __retres = -1;
