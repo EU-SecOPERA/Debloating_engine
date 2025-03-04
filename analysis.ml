@@ -454,9 +454,23 @@ struct
          let kf = Globals.Functions.get f in
          mk_call stmt s lv kf args
        | Lval lvf ->
-         let sf = Alias.API.Statement.alias_vars ~stmt lvf in
-         Cil_datatype.Varinfo.Set.fold
-           (multiple_calls stmt s lv args) sf None
+         let loc = Cil_datatype.Instr.loc i in
+         let source = fst loc in
+         (match eval_lval s.state lvf with
+          | CPtr(Var f,CNoOffset) ->
+            let kf = Globals.Functions.get f in
+            mk_call stmt s lv kf args
+          | _->
+            let sf = Alias.API.Statement.alias_vars ~stmt lvf in
+            if Cil_datatype.Varinfo.Set.is_empty sf then begin
+              Options.warning ~once:true ~source
+                "Empty candidate set for indirect call to %a"
+                Printer.pp_lval lvf;
+              Some (update_state havoc_state s)
+            end else begin
+              Cil_datatype.Varinfo.Set.fold
+                (multiple_calls stmt s lv args) sf None
+            end)
        | _ ->
          Options.fatal "Unexpected expression as called function: %a"
            Printer.pp_exp f)
