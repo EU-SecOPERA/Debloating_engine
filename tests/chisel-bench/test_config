@@ -1,0 +1,3 @@
+COMMENT: files from chisel-bench (https://github.com/aspire-project/chisel-bench)
+PLUGIN: debloating
+OPT: -debloating -then-last -print
