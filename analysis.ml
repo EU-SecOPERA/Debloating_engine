@@ -587,12 +587,6 @@ class debloat_visitor prj =
 
     method! vfunc _ = Cil.DoChildrenPost cleanup_fundec
 
-    method! vvrbl v =
-      let v' = Visitor_behavior.Get_orig.varinfo self#behavior v in
-      if v.vname = "default_bzalloc" then
-        Options.feedback "%s(%d) -> %s(%d)" v'.vname v'.vid v.vname v.vid;
-      DoChildren
-
     method! vglob_aux =
       function
       | GFun (_, loc) ->
@@ -606,8 +600,6 @@ class debloat_visitor prj =
           Options.debug ~dkey
             "Function %a is never called" Kernel_function.pretty kf;
           let v = Kernel_function.get_vi new_kf in
-          let ov = Visitor_behavior.Get_orig.varinfo self#behavior v in
-          Options.feedback "KF: %s(%d) -> %s(%d)" ov.vname ov.vid v.vname v.vid;
           v.vdefined <- false;
           let spec = Cil.empty_funspec () in 
           let decl = GFunDecl(spec, v, loc) in
@@ -633,7 +625,6 @@ let debloat () =
   let prj =
     create_debloating_project (Options.Project_name.get())
   in
-  Options.feedback "OK";
   let main_kf, _ = Project.on prj Globals.entry_point () in
   let isRoot =
     function
