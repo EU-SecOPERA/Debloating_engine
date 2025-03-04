@@ -1,0 +1,5 @@
+(rule (target "dead_inner_block.err.oracle") (mode fallback) (action (write-file "dead_inner_block.err.oracle" "")))
+(rule (target "dead_inner_block.res.oracle") (mode fallback) (action (write-file "dead_inner_block.res.oracle" "")))
+(rule (target "dead_block.err.oracle") (mode fallback) (action (write-file "dead_block.err.oracle" "")))
+(rule (target "dead_block.res.oracle") (mode fallback) (action (write-file "dead_block.res.oracle" "")))
+

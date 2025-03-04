@@ -1,0 +1,2 @@
+PLUGIN: debloating
+OPT: -debloating -then-last -print

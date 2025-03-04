@@ -1,1 +1,4 @@
 /_build/
+/tests/chisel-bench/result/bzip2-1.0.5.c.origin.0.exec.wtests
+*.wtests
+/tests/*/result/dune

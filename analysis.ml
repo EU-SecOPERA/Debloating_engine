@@ -130,9 +130,8 @@ let compare_c_const op c1 c2 =
   let cmp = binop op c1 c2 in
   match Cil.constFoldToInt (cil_exp ~loc cmp) with
   | None -> CNotConstant
-  | Some z when Z.equal z Z.zero -> eval_eq_operands op
-  | Some z when Z.lt z Z.zero -> eval_lt_operands op
-  | Some _ -> eval_gt_operands op
+  | Some z when Z.equal z Z.zero -> false_result
+  | Some _ -> true_result
 
 let compare_val op v1 v2 =
   match v1, v2 with
@@ -295,8 +294,9 @@ let rec init_lval b o init s =
     in
     List.fold_left eval_one s l
 
-(* TODO: reduce if e is of the form x == c *)
-let reduce_state_true _e s = s
+(* TODO: reduce if e is of the form x == c
+   (or x != c depending on whether we enter the then or the else branch) *)
+let reduce_state_true _e _k s = s
 
 let add_glob_var v i s =
   match i.init with
@@ -488,6 +488,7 @@ struct
       mk_call stmt s ret_lv kf args
     | Asm _ -> Some (update_state havoc_state s)
     | Code_annot _ -> Some s
+
   let transfer _v t s =
     let open Interpreted_automata in
     match t.edge_transition with
@@ -496,17 +497,17 @@ struct
       Some { s with return_value = Option.map (eval_exp s.state) e }
     | Guard(e,k,_) ->
       let v = eval_exp s.state e in
-      let res = match k with
-        | Then -> false_result
-        | Else -> true_result
+      let res, ks = match k with
+        | Then -> false_result, "Then"
+        | Else -> true_result, "Else"
       in
       Options.debug ~dkey "Evaluating %a to %a"
         Printer.pp_exp e Singleton_val.pretty v;
       let v = compare_val Ne v false_result in
       if Singleton_val.equal v res then begin
-        Options.debug ~dkey "Dead branch";
+        Options.debug ~dkey "Dead branch %s" ks;
         None
-      end else Some (update_state (reduce_state_true e) s)
+      end else Some (update_state (reduce_state_true e k) s)
     | Prop _ -> Some s (*TODO: reduce ACSL annotations. *)
     | Instr (i,stmt) -> transfer_instr i stmt s
     | Enter b ->
@@ -522,7 +523,7 @@ struct
     let res = fixpoint ?wto kf pre_state in
     (* unreachable statements are ignored by the iteration. *)
     Result.iter_stmt (fun s _ -> Reachable_stmts.add s) res;
-    res      
+    res
 end
 
 (* TODO: real init. *)
@@ -544,11 +545,20 @@ let cleanup_fundec f =
       Some s
     end else None
   in
+  let remove_locals vars =
+    f.slocals <-
+      List.filter
+        (fun v -> not (List.exists (Cil_datatype.Varinfo.equal v) vars))
+        f.slocals
+  in
   let rec aux s =
       match s.skind with
       | Block b ->
         cleanup_block b;
-        if b.bstmts = [] then preserve_labels s else Some s
+        if b.bstmts = [] then begin
+          remove_locals b.blocals;
+          preserve_labels s
+        end else Some s
       | Instr (Skip _) when s.labels = [] -> None
       | If(_,b1,b2,_) ->
           cleanup_block b1;
@@ -557,7 +567,11 @@ let cleanup_fundec f =
           else Some s
       | Loop(_,b,_,_,_) -> cleanup_block b; Some s
       | _ -> Some s
-  and cleanup_block b = b.bstmts <- List.filter_map aux b.bstmts
+  and cleanup_block b =
+    b.bstmts <- List.filter_map aux b.bstmts;
+    if b.bstmts = [] then begin
+      List.iter (fun v -> v.vdefined <- false) b.blocals
+    end
   in
   cleanup_block f.sbody; f
 

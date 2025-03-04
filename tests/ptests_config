@@ -1,1 +1,1 @@
-DEFAULT_SUITES=chisel-bench
+DEFAULT_SUITES=basic chisel-bench
