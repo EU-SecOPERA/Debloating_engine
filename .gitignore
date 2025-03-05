@@ -3,3 +3,4 @@
 *.wtests
 /tests/*/result/dune
 tests/*/oracle/dune
+/docker/debloating
