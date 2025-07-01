@@ -489,7 +489,7 @@ struct
     | Asm _ -> Some (update_state havoc_state s)
     | Code_annot _ -> Some s
 
-  let transfer _v t s =
+  let transfer (_v1, t, _v2) s =
     let open Interpreted_automata in
     match t.edge_transition with
     | Skip -> Some s
