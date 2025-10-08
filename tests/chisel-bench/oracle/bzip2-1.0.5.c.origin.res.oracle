@@ -105,8 +105,6 @@
   function ferror has no definition
 [alias:undefined:fn] bzip2-1.0.5.c.origin.c:6373: Warning: 
   function free has no definition
-[alias:no-return] bzip2-1.0.5.c.origin.c:4663: Warning: 
-  function BZ2_bz__AssertH__fail does not return; analysis may be unsound
 [alias:undefined:fn] bzip2-1.0.5.c.origin.c:9656: Warning: 
   function getenv has no definition
 [alias:undefined:fn] bzip2-1.0.5.c.origin.c:9671: Warning: 
@@ -161,8 +159,6 @@
   function utime has no definition
 [alias:undefined:fn] bzip2-1.0.5.c.origin.c:7954: Warning: 
   function fprintf has no definition
-[alias:no-return] bzip2-1.0.5.c.origin.c:7985: Warning: 
-  function cleanUpAndFail does not return; analysis may be unsound
 [alias:undefined:fn] bzip2-1.0.5.c.origin.c:8079: Warning: 
   function fprintf has no definition
 [alias:no-return] bzip2-1.0.5.c.origin.c:8075: Warning: 
@@ -325,14 +321,10 @@
   function perror has no definition
 [alias:no-return] bzip2-1.0.5.c.origin.c:8107: Warning: 
   function compressedStreamEOF does not return; analysis may be unsound
-[alias:no-return] bzip2-1.0.5.c.origin.c:8253: Warning: 
-  function configError does not return; analysis may be unsound
 [alias:undefined:fn] bzip2-1.0.5.c.origin.c:8096: Warning: 
   function fprintf has no definition
 [alias:no-return] bzip2-1.0.5.c.origin.c:8092: Warning: 
   function crcError does not return; analysis may be unsound
-[alias:no-return] bzip2-1.0.5.c.origin.c:8127: Warning: 
-  function ioError does not return; analysis may be unsound
 [alias:undefined:fn] bzip2-1.0.5.c.origin.c:9506: Warning: 
   function fprintf has no definition
 [alias:undefined:fn] bzip2-1.0.5.c.origin.c:9822: Warning: 
@@ -618,12 +610,12 @@
 [alias:undefined:fn] bzip2-1.0.5.c.origin.c:10096: Warning: 
   function exit has no definition
 [alias:incoherent] Warning: 
-  cycle during readout of vertex 12457, (following unsafe cast?); analysis may be unsound
+  cycle during readout of vertex 14762656915521013, (following unsafe cast?); analysis may be unsound
 [alias:incoherent] Warning: 
-  cycle during readout of vertex 12458, (following unsafe cast?); analysis may be unsound
+  cycle during readout of vertex 14762656915521014, (following unsafe cast?); analysis may be unsound
 [alias] May-aliases at the end of function main:
-  { progName; progNameReally; tmp }  { argList->name; aa->name; aa2->name }
-  { argList; aa; aa2 }
+  { argList; aa; aa2 }  { progName; progNameReally; tmp }
+  { argList->name; aa->name; aa2->name }
 [alias:undefined:fn] bzip2-1.0.5.c.origin.c:8159: Warning: 
   function fprintf has no definition
 [alias:undefined:fn] bzip2-1.0.5.c.origin.c:8190: Warning: 
@@ -634,10 +626,6 @@
   function fprintf has no definition
 [alias:no-return] bzip2-1.0.5.c.origin.c:8142: Warning: 
   function mySignalCatcher does not return; analysis may be unsound
-[alias:no-return] bzip2-1.0.5.c.origin.c:8238: Warning: 
-  function outOfMemory does not return; analysis may be unsound
-[alias:no-return] bzip2-1.0.5.c.origin.c:8075: Warning: 
-  function panic does not return; analysis may be unsound
 [debloating] Warning: Recursive call detected for snocString, approximating
 [debloating] Warning: Recursive call detected for snocString, approximating
 [debloating] Warning: Recursive call detected for snocString, approximating
