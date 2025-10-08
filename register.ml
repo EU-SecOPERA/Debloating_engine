@@ -18,11 +18,9 @@ let compute_nb_stmt () =
 let main () =
   if Options.Enabled.get() then begin
     Analysis.debloat ();
+    let prj = List.hd (Project.find_all (Options.Project_name.get())) in
     let nb_stmt_orig = compute_nb_stmt () in
-    let nb_stmt_debloat =
-      Project.on (Project.from_unique_name (Options.Project_name.get()))
-        compute_nb_stmt ()
-    in
+    let nb_stmt_debloat = Project.on prj compute_nb_stmt () in
     let percent_gain = (100 * (nb_stmt_orig - nb_stmt_debloat)) / nb_stmt_orig in
     Options.feedback ~dkey
       "@[<v>Initial number of statements: %d@;\

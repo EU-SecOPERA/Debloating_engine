@@ -238,8 +238,6 @@ let rec eval_exp env e =
   | Lval lv -> eval_lval env lv
   | SizeOf t -> eval_sizeof t
   | SizeOfE e -> eval_sizeof (Cil.typeOf e)
-  | SizeOfStr s ->
-    int_constant (Machine.sizeof_kind ()) (Z.of_int (String.length s))
   | AlignOf t -> eval_alignof t
   | AlignOfE e -> eval_alignof (Cil.typeOf e)
   | UnOp (uop,e,t) -> eval_unop uop (eval_exp env e) t
@@ -300,8 +298,8 @@ let reduce_state_true _e _k s = s
 
 let add_glob_var v i s =
   match i.init with
-  | Some i -> init_lval (Var v) CNoOffset i s
-  | None -> s
+  | Some (CInit i) -> init_lval (Var v) CNoOffset i s
+  | Some (StrInit _) | None -> s
 
 let add_formals kf args s =
   let formals = Kernel_function.get_formals kf in
@@ -449,31 +447,28 @@ struct
       Some (update_state (assign_lval stmt lv v s.state) s)
     | Call(lv,f,args,_) ->
       let args = List.map (eval_exp s.state) args in
-      (match f.enode with
-       | Lval(Var f, NoOffset) ->
+      (match f with
+       | Var f ->
          let kf = Globals.Functions.get f in
          mk_call stmt s lv kf args
-       | Lval lvf ->
+       | pf ->
          let loc = Cil_datatype.Instr.loc i in
          let source = fst loc in
-         (match eval_lval s.state lvf with
+         (match eval_lval s.state (pf, NoOffset) with
           | CPtr(Var f,CNoOffset) ->
             let kf = Globals.Functions.get f in
             mk_call stmt s lv kf args
           | _->
-            let sf = Alias.API.Statement.alias_vars ~stmt lvf in
+            let sf = Alias.API.Statement.alias_vars ~stmt (pf,NoOffset) in
             if Cil_datatype.Varinfo.Set.is_empty sf then begin
               Options.warning ~once:true ~source
                 "Empty candidate set for indirect call to %a"
-                Printer.pp_lval lvf;
+                Printer.pp_lhost pf;
               Some (update_state havoc_state s)
             end else begin
               Cil_datatype.Varinfo.Set.fold
                 (multiple_calls stmt s lv args) sf None
-            end)
-       | _ ->
-         Options.fatal "Unexpected expression as called function: %a"
-           Printer.pp_exp f)
+            end))
     | Local_init (vi, AssignInit init, _) ->
       Some (update_state (init_lval (Var vi) CNoOffset init) s)
     | Local_init (vi, ConsInit(f, args, kind),loc) ->
