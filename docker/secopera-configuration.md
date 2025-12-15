@@ -11,9 +11,10 @@ compiling Frama-C 30.0.
 - ocamlgraph.2.1.0
 - ppx_deriving_yaml.0.4.0
 - ppx_deriving_yojson.3.9.1
+- ppx_inline_test.v0.16.1
 - timedesc.3.1.0 (for secopera-report)
 - unionFind.20220122
-- why3.1.8.0 (for wp)
+- why3.1.8.2 (for wp)
 - alt-ergo.2.5.4 (for wp, optional)
 - yojson.2.2.2
 - zarith.1.14

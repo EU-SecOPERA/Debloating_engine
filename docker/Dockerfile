@@ -123,7 +123,7 @@ frama-c -eva -wp -report /tmp/simple.c && \
 rm -f /tmp/simple.c && \
 echo "int main() { /*@ assert 1 + 2 == 2; */ return 0; }" > /tmp/test-eacsl.c && \
 [ -e /etc/alpine-release ] || \
- (cd /tmp && e-acsl-gcc.sh -c test-eacsl.c && \
+ (cd /tmp && e-acsl-gcc -c test-eacsl.c && \
  ./a.out.e-acsl 2>&1 | grep -q "Assertion failed" && \
  rm -f ./a.out* test-eacsl.c)
 

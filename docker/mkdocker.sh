@@ -13,7 +13,7 @@ cp -r "$MYDIR"/../*.ml "$MYDIR"/../*.mli "$MYDIR"/../Makefile \
 docker build $MYDIR -t secopera/frama-c-debloating:latest \
        --build-arg=DISTRO=debian:12.9 \
        --build-arg=OCAML_VERSION=5.3.0 \
-       --build-arg=FC_COMMIT=31.0 \
+       --build-arg=FC_COMMIT=32.0 \
        --target frama-c-slim
 
 rm -fr $MYDIR/debloating
