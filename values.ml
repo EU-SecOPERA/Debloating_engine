@@ -7,7 +7,7 @@ type base_addr =
 type constant_offset =
   | CNoOffset
   | CField of fieldinfo * constant_offset
-  | CIndex of Integer.t * constant_offset
+  | CIndex of Z.t * constant_offset
 
 module Base_addr = Datatype.Make_with_collections(
   struct

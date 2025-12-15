@@ -610,12 +610,12 @@
 [alias:undefined:fn] bzip2-1.0.5.c.origin.c:10096: Warning: 
   function exit has no definition
 [alias:incoherent] Warning: 
-  cycle during readout of vertex 14762656915521013, (following unsafe cast?); analysis may be unsound
+  cycle during readout of vertex 23104, (following unsafe cast?); analysis may be unsound
 [alias:incoherent] Warning: 
-  cycle during readout of vertex 14762656915521014, (following unsafe cast?); analysis may be unsound
+  cycle during readout of vertex 23098, (following unsafe cast?); analysis may be unsound
 [alias] May-aliases at the end of function main:
-  { argList; aa; aa2 }  { progName; progNameReally; tmp }
-  { argList->name; aa->name; aa2->name }
+  { argList->name; aa->name; aa2->name }  { stdout; outputHandleJustInCase }
+  { progName; progNameReally; tmp }  { argList; aa; aa2 }
 [alias:undefined:fn] bzip2-1.0.5.c.origin.c:8159: Warning: 
   function fprintf has no definition
 [alias:undefined:fn] bzip2-1.0.5.c.origin.c:8190: Warning: 

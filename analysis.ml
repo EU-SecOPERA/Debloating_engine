@@ -29,7 +29,8 @@ let eval_sizeof t =
     int_constant (Machine.sizeof_kind()) (eval_sizeof_int t)
   with Cil.SizeOfError _ -> CNotConstant
 
-let eval_alignof t =
+let eval_alignof t _std_or_gcc =
+  (* TODO: check whether std_or_gcc is needed *)
   try
     let align = Cil.bytesAlignOf t in
     int_constant (Machine.sizeof_kind()) (Z.of_int align)
@@ -44,7 +45,7 @@ let true_result = int_result IBool Z.one
 let false_result = int_result IBool Z.zero
 
 let eval_int_unop op v t =
-  match (Ast_types.unroll t).tnode, op with
+  match Ast_types.unroll_node t, op with
   | TInt k, Neg -> int_result k (Z.neg v)
   | TInt k, BNot -> int_result k (Z.lognot v)
   | TInt k, LNot -> int_result k Z.(if (equal zero v) then one else zero)
@@ -56,7 +57,7 @@ let eval_unop op v t =
   | CPtr _ -> CNotConstant
   | CConst (CInt64 (v,_,_)) -> eval_int_unop op v t
   | CConst (CReal (v,_,_)) ->
-    (match (Ast_types.unroll t).tnode, op with
+    (match Ast_types.unroll_skel t, op with
      | TInt k, LNot -> int_result k (if v = 0. then Z.one else Z.zero)
      | TFloat k, Neg -> CConst (CReal (-. v,k,None))
      | _ -> CNotConstant)
@@ -219,12 +220,12 @@ let eval_cast t v =
   | CPtr _ when Ast_types.is_ptr t -> v
   | CPtr _ -> CNotConstant
   | CConst (CInt64(z, _, _)) ->
-    (match (Ast_types.unroll t).tnode with
+    (match Ast_types.unroll_skel t with
      | TInt k -> int_result k z
      | TEnum e -> int_result e.ekind z
      | _ -> CNotConstant)
   | CConst (CReal(v,_,_)) ->
-    (match (Ast_types.unroll t).tnode with
+    (match Ast_types.unroll_skel t with
      | TFloat k when Cil.isFiniteFloat k v -> CConst (CReal(v,k,None))
      | TFloat _ -> CNotConstant
      | TInt k -> int_result k (Z.of_float v)
@@ -238,8 +239,8 @@ let rec eval_exp env e =
   | Lval lv -> eval_lval env lv
   | SizeOf t -> eval_sizeof t
   | SizeOfE e -> eval_sizeof (Cil.typeOf e)
-  | AlignOf t -> eval_alignof t
-  | AlignOfE e -> eval_alignof (Cil.typeOf e)
+  | AlignOf (t,kind) -> eval_alignof t kind
+  | AlignOfE (e,kind) -> eval_alignof (Cil.typeOf e) kind
   | UnOp (uop,e,t) -> eval_unop uop (eval_exp env e) t
   | BinOp (bop,e1,e2,_) -> eval_binop bop (eval_exp env e1) (eval_exp env e2)
   | CastE (t,e) -> eval_cast t (eval_exp env e)
@@ -296,10 +297,46 @@ let rec init_lval b o init s =
    (or x != c depending on whether we enter the then or the else branch) *)
 let reduce_state_true _e _k s = s
 
+let init_strinit base ~seq ~zero ~mkconst s =
+  let (_,size) = Ast_types.array_elem_type_and_size base.vtype in
+  let mklval i = Var base, CIndex (i, CNoOffset) in
+  let treat_one (i,s) v =
+    (Z.succ i, CLval.Map.add (mklval i) (CConst (mkconst v)) s)
+  in
+  let (i,s) = Seq.fold_left treat_one (Z.zero,s) seq in
+  let final_size =
+    match Option.bind (Cil.constFoldToInt ~machdep:true) size with
+    | None -> Z.succ i
+    | Some z -> z
+  in
+  let rec add_zero i s =
+    if Z.geq i final_size then s
+    else add_zero (Z.succ i) (CLval.Map.add (mklval i) (CConst zero) s)
+  in add_zero i s
+
+let init_str v str s =
+  let zero = CChr '\000' in
+  let mkconst c = CChr c in
+  let seq = String.to_seq str in
+  init_strinit v ~seq ~zero ~mkconst s
+
+let init_wstr v str s =
+  let zero = CInt64 (Z.zero,Machine.wchar_kind(),None) in
+  let mkconst c =
+    let z =
+      if Machine.char_is_unsigned () then Z.of_int64_unsigned c else Z.of_int64 c
+    in
+    CInt64 (z,Machine.wchar_kind(),None)
+  in
+  let seq = List.to_seq str in
+  init_strinit v ~seq ~zero ~mkconst s
+
 let add_glob_var v i s =
   match i.init with
   | Some (CInit i) -> init_lval (Var v) CNoOffset i s
-  | Some (StrInit _) | None -> s
+  | Some (StrInit (Str str)) -> init_str v str s
+  | Some (StrInit (Wstr ws)) -> init_wstr v ws s
+  | None -> s
 
 let add_formals kf args s =
   let formals = Kernel_function.get_formals kf in
@@ -451,19 +488,18 @@ struct
        | Var f ->
          let kf = Globals.Functions.get f in
          mk_call stmt s lv kf args
-       | pf ->
-         let loc = Cil_datatype.Instr.loc i in
-         let source = fst loc in
-         (match eval_lval s.state (pf, NoOffset) with
+       | Mem _ ->
+         (match eval_lval s.state (f,NoOffset) with
           | CPtr(Var f,CNoOffset) ->
             let kf = Globals.Functions.get f in
             mk_call stmt s lv kf args
           | _->
-            let sf = Alias.API.Statement.alias_vars ~stmt (pf,NoOffset) in
+            let source = fst (Cil_datatype.Instr.loc i) in
+            let sf = Alias.API.Statement.alias_vars ~stmt (f,NoOffset) in
             if Cil_datatype.Varinfo.Set.is_empty sf then begin
               Options.warning ~once:true ~source
                 "Empty candidate set for indirect call to %a"
-                Printer.pp_lhost pf;
+                Printer.pp_lhost f;
               Some (update_state havoc_state s)
             end else begin
               Cil_datatype.Varinfo.Set.fold
@@ -606,10 +642,24 @@ class debloat_visitor prj =
 
     method! vfunc _ = Cil.DoChildrenPost cleanup_fundec
 
+    method private transfer_variadic_info vi =
+      if Replacements.mem vi then begin
+        let vi' = Replacements.find vi in
+        let new_vi = Visitor_behavior.Get.varinfo self#behavior vi in
+        let new_vi' = Visitor_behavior.Memo.varinfo self#behavior vi' in
+        Queue.add (fun () -> Replacements.add new_vi new_vi')
+          self#get_filling_actions
+      end
+
     method! vglob_aux =
       function
+      | GFunDecl(_,vi,_) ->
+        self#transfer_variadic_info vi;
+        Cil.JustCopy
       | GFun (_, loc) ->
         let kf = Option.get self#current_kf in
+        let vi = Kernel_function.get_vi kf in
+        self#transfer_variadic_info vi;
         let new_kf = Visitor_behavior.Get.kernel_function self#behavior kf in
         let s = Kernel_function.find_first_stmt kf in
         if Reachable_stmts.mem s then begin
