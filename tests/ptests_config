@@ -1,1 +1,1 @@
-DEFAULT_SUITES=basic chisel-bench
+DEFAULT_SUITES=basic chisel-bench case-studies

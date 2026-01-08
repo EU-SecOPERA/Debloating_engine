@@ -1,0 +1,4 @@
+COMMENT: Sample programs demonstrating actual reduction in code size
+COMMENT: when main fun does not use all library functionalities
+PLUGIN: debloating
+OPT: -no-variadic-translation -debloating -then-last -print
